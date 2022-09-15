@@ -22,8 +22,12 @@ We are going to mark the launchers on the following properties:
 - Privacy Policy 
 
 **Note:**
-*▪️ Icon pack support is not a property in this table because every launcher in this list support Icon packs… except some that are marked with “less than basic” features.
-▪️ Privacy report for each launcher is provided via Exodus Privacy. I can’t tell you how accurate or updated it is, so take it with a grain of salt.*
+
+*▪️ Icon pack support is not a property in this table because every launcher in this list support Icon packs… except some that are marked with “less than basic” features.*
+
+*▪️ Privacy report for each launcher is provided via Exodus Privacy. I can’t tell you how accurate or updated it is, so take it with a grain of salt.*
+
+
 ## Comparison
 | **Name** | **Price** | **Ads/ Bloatware** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP  Support** | **Widget Support** | **Material  You Colors** | **Landscape  Support** | **Code  Availability** | **QuickSwitch  Support** | **Android  Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
