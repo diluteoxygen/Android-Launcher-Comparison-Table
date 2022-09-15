@@ -29,7 +29,7 @@ We are going to mark the launchers on the following properties:
 
 
 ## Comparison
-| **Name** | **Price** | **Ads/ Bloatware** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP  Support** | **Widget Support** | **Material  You Colors** | **Landscape  Support** | **Code  Availability** | **QuickSwitch  Support** | **Android  Version** | **Privacy** | **Download** |
+| **Name** | **Price** | **Ads/Bloat Free** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP  Support** | **Widget Support** | **Material  You Colors** | **Landscape  Support** | **Code  Availability** | **QuickSwitch  Support** | **Android  Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Nova Launcher | Freemium | 🟢 | ⭐⭐⭐ | Advanced | 🔄 | ✅ | ✅ | ✅ | ✅ | 🔒 | ❌ | 8.0+ | [via Exodus   Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.teslacoilsw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher) |
 | Smart Launcher 6 | Freemium | 🟢 | ⭐⭐⭐ | Advanced | ↕️ | ✅ | ✅ | ✅ | ✅ | 🔒 | ❗ | 7.0+ | [via Exodus   Privacy](https://reports.exodus-privacy.eu.org/en/reports/ginlemon.flowerfree/latest/) | [Link](https://play.google.com/store/apps/details?id=ginlemon.flowerfree) |
