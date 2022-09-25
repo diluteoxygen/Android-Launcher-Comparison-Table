@@ -27,7 +27,6 @@ We are going to mark the launchers on the following properties:
 
 *▪️ Privacy report for each launcher is provided via Exodus Privacy. I can’t tell you how accurate or updated it is, so take it with a grain of salt.*
 
-
 ## Comparison
 | **Name** | **Price** | **Ads/Bloat Free** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP  Support** | **Widget Support** | **Material  You Colors** | **Landscape  Support** | **Code  Availability** | **QuickSwitch  Support** | **Android  Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -83,6 +82,25 @@ We are going to mark the launchers on the following properties:
 | Tiny bit Launcher | Free | 🟢 | ⭐⭐ | Basic | Other | ➰ | ❌ | ❌ | ❓ | 🔓 | ❗ |  | [via Exodus   Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.n277.lynxlauncher/latest/) | Download |
 | Lens Launcher | Free | 🟢 | ⭐⭐⭐ | Basic | Other | ❌ | ❌ | ❌ | ❓ | 🔓 | ❗ |  | [via Exodus   Privacy](https://reports.exodus-privacy.eu.org/en/reports/nickrout.lenslauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=nickrout.lenslauncher&hl=en&gl=US) |
 | Starlight Launcher | Free | 🟢 | ⭐⭐⭐ | Basic | Other | ❌ | ✅ | ❌ | ❓ | 🔓 | ❗ |  | N/A | [Link](https://play.google.com/store/apps/details?id=kenneth.app.starlightlauncher) |
+
+## Legend
+| Sym | Def |
+|---|---|
+| ✅ | Available/Supported |
+| ❌ | Unavailable/Unsupported |
+| ❓ | Unknown |
+| ❗ | Not Tested |
+| ➰ | Partially Supported |
+| 🟢 | None |
+| 🟡 | Mild |
+| 🔴 | Excessive |
+| ↕️ | Vertical |
+| ↔️ | Horizontal |
+| 🔄 | Multi-Layout |
+| 🔒 | Closed-Sourced |
+| 🔓 | Open-Sourced |
+| 🔏 | Partially Open-Sourced |
+
 ## TO-DO
 - Add Icons
 - Improve Readability
