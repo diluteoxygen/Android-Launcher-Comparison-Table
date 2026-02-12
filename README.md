@@ -104,7 +104,7 @@ We are going to mark the launchers on the following properties:
 | ☠️ | Dead/Discontinued |
 | 🧹 | No Ads |
 | 📢 | Mild Ads |
-| 🚨 | Heavy Ads |
+| 🚨 | Excessive Ads |
 | ⬆️⬇️ | Vertical Drawer |
 | ⬅️➡️ | Horizontal Drawer |
 | 🔀 | Multi-Layout Drawer |

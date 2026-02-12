@@ -513,7 +513,7 @@ const legend = [
   { sym:"☠️", def:"Dead / Discontinued" },
   { sym:"🧹", def:"No Ads" },
   { sym:"📢", def:"Mild Ads" },
-  { sym:"🚨", def:"Heavy Ads" },
+  { sym:"🚨", def:"Excessive Ads" },
   { sym:"⬆️⬇️", def:"Vertical Drawer" },
   { sym:"⬅️➡️", def:"Horizontal Drawer" },
   { sym:"🔀", def:"Multi-Layout Drawer" },
@@ -537,7 +537,7 @@ function priceBadge(p) {
 function adsLabel(a) {
   if (a === 'none') return '<span class="ads-none">🧹 No Ads</span>';
   if (a === 'mild') return '<span class="ads-mild">📢 Mild Ads</span>';
-  if (a === 'excessive') return '<span class="ads-excessive">🚨 Heavy Ads</span>';
+  if (a === 'excessive') return '<span class="ads-excessive">🚨 Excessive Ads</span>';
   if (a === 'unknown') return '<span class="ads-unknown">❔</span>';
   return '<span class="ads-unknown">—</span>';
 }
