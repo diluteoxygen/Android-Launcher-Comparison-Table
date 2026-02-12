@@ -506,20 +506,20 @@ const launchers = [
 // ── Legend data ─────────────────────────────────────────
 const legend = [
   { sym:"✅", def:"Available / Supported" },
-  { sym:"❌", def:"Unavailable / Unsupported" },
-  { sym:"❓", def:"Unknown" },
-  { sym:"❗", def:"Not Tested" },
-  { sym:"➰", def:"Partially Supported" },
-  { sym:"💀", def:"Dead / Discontinued" },
-  { sym:"🟢", def:"No Ads" },
-  { sym:"🟡", def:"Mild Ads" },
-  { sym:"🔴", def:"Excessive Ads" },
-  { sym:"↕️", def:"Vertical Drawer" },
-  { sym:"↔️", def:"Horizontal Drawer" },
-  { sym:"🔄", def:"Multi-Layout Drawer" },
+  { sym:"✖️", def:"Unavailable / Unsupported" },
+  { sym:"❔", def:"Unknown" },
+  { sym:"🧪", def:"Not Tested" },
+  { sym:"🌓", def:"Partially Supported" },
+  { sym:"☠️", def:"Dead / Discontinued" },
+  { sym:"🧹", def:"No Ads" },
+  { sym:"📢", def:"Mild Ads" },
+  { sym:"🚨", def:"Excessive Ads" },
+  { sym:"⬆️⬇️", def:"Vertical Drawer" },
+  { sym:"⬅️➡️", def:"Horizontal Drawer" },
+  { sym:"🔀", def:"Multi-Layout Drawer" },
   { sym:"🔒", def:"Closed-Sourced" },
-  { sym:"🔓", def:"Open-Sourced" },
-  { sym:"🔏", def:"Partially Open-Sourced" },
+  { sym:"📖", def:"Open-Sourced" },
+  { sym:"🧩", def:"Partially Open-Sourced" },
 ];
 
 // ── Helpers ─────────────────────────────────────────────
@@ -535,24 +535,48 @@ function priceBadge(p) {
 }
 
 function adsLabel(a) {
-  if (a === 'none') return '<span class="ads-none">🟢 None</span>';
-  if (a === 'mild') return '<span class="ads-mild">🟡 Mild</span>';
-  if (a === 'excessive') return '<span class="ads-excessive">🔴 Excessive</span>';
-  if (a === 'unknown') return '<span class="ads-unknown">❓</span>';
+  if (a === 'none') return '<span class="ads-none">🧹 No Ads</span>';
+  if (a === 'mild') return '<span class="ads-mild">📢 Mild Ads</span>';
+  if (a === 'excessive') return '<span class="ads-excessive">🚨 Excessive Ads</span>';
+  if (a === 'unknown') return '<span class="ads-unknown">❔</span>';
   return '<span class="ads-unknown">—</span>';
 }
 
 function updatesLabel(u) {
-  if (u === -1) return '<span class="dead">💀 Dead</span>';
+  if (u === -1) return '<span class="dead">☠️ Dead</span>';
   if (u === 0) return '—';
   return '<span class="star">' + '⭐'.repeat(u) + '</span>';
 }
 
+const SUPPORT_MAP = {
+  '❌':'✖️',
+  '❓':'❔',
+  '❗':'🧪',
+  '➰':'🌓',
+};
+
+function supportSymbol(sym) {
+  if (!sym) return '—';
+  return esc(SUPPORT_MAP[sym] || sym);
+}
+
+const DRAWER_MAP = {
+  '🔄 Multi-Layout':'🔀 Multi-Layout',
+  '↔️ Horizontal':'⬅️➡️ Horizontal',
+  '↕️ Vertical':'⬆️⬇️ Vertical',
+};
+
+function drawerLabel(drawer) {
+  if (!drawer) return '—';
+  if (DRAWER_MAP[drawer]) return DRAWER_MAP[drawer];
+  return esc(drawer);
+}
+
 function codeLabel(c) {
-  if (c === 'open') return '<span class="code-open">🔓 Open</span>';
+  if (c === 'open') return '<span class="code-open">📖 Open</span>';
   if (c === 'closed') return '<span class="code-closed">🔒 Closed</span>';
-  if (c === 'partial') return '<span class="code-partial">🔏 Partial</span>';
-  return '<span class="code-closed">❓</span>';
+  if (c === 'partial') return '<span class="code-partial">🧩 Partial</span>';
+  return '<span class="code-closed">❔</span>';
 }
 
 function iconSrc(icon) {
@@ -652,13 +676,13 @@ function render() {
       + '<td>' + adsLabel(l.ads) + '</td>'
       + '<td>' + updatesLabel(l.updates) + '</td>'
       + '<td>' + esc(l.custom) + '</td>'
-      + '<td>' + esc(l.drawer) + '</td>'
-      + '<td>' + esc(l.klwp) + '</td>'
-      + '<td>' + esc(l.widget) + '</td>'
-      + '<td>' + esc(l.material) + '</td>'
-      + '<td>' + esc(l.landscape) + '</td>'
+      + '<td>' + drawerLabel(l.drawer) + '</td>'
+      + '<td>' + supportSymbol(l.klwp) + '</td>'
+      + '<td>' + supportSymbol(l.widget) + '</td>'
+      + '<td>' + supportSymbol(l.material) + '</td>'
+      + '<td>' + supportSymbol(l.landscape) + '</td>'
       + '<td>' + codeLabel(l.code) + '</td>'
-      + '<td>' + esc(l.quickswitch) + '</td>'
+      + '<td>' + supportSymbol(l.quickswitch) + '</td>'
       + '<td>' + esc(l.android) + '</td>'
       + '<td>' + privacyCell + '</td>'
       + '<td>' + downloadCell + '</td>'
