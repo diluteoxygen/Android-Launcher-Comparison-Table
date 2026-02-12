@@ -523,10 +523,10 @@ const legend = [
 ];
 
 // ── Helpers ─────────────────────────────────────────────
-function esc(s) {
-  var d = document.createElement('div');
-  d.appendChild(document.createTextNode(s));
-  return d.innerHTML;
+function esc(text) {
+  var tempElement = document.createElement('div');
+  tempElement.appendChild(document.createTextNode(text));
+  return tempElement.innerHTML;
 }
 
 function priceBadge(p) {
