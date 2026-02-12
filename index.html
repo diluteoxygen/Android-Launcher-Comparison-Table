@@ -548,7 +548,7 @@ function updatesLabel(u) {
   return '<span class="star">' + '⭐'.repeat(u) + '</span>';
 }
 
-var SUPPORT_MAP = {
+const SUPPORT_MAP = {
   '✅':'✅',
   '❌':'✖️',
   '❓':'❔',
@@ -573,7 +573,7 @@ function codeLabel(c) {
   if (c === 'open') return '<span class="code-open">📖 Open</span>';
   if (c === 'closed') return '<span class="code-closed">🔒 Closed</span>';
   if (c === 'partial') return '<span class="code-partial">🧩 Partial</span>';
-  return '<span class="code-closed">❓</span>';
+  return '<span class="code-closed">❔</span>';
 }
 
 function iconSrc(icon) {
