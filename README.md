@@ -1,7 +1,9 @@
 
-# [The Definitive Android Launcher Comparison Table](https://www.notion.so/6671f3b62d8043c4aaaae22a241e3f05)
+# [The Definitive Android Launcher Comparison Table](https://diluteoxygen.github.io/Android-Launcher-Comparison-Table/)
 
 > **Last Updated: February 2026**
+> 
+> 🌐 **[View Interactive Table](https://diluteoxygen.github.io/Android-Launcher-Comparison-Table/)**
 
 This table is made to help find a launcher that checks all boxes in terms of need. If you're new to Android theming or Android in general, create a filter below with customizability set to Basic to get started! Credits to [Grabstertv](https://www.reddit.com/user/Grabstertv/) for doing most of the heavy lifting.
 
