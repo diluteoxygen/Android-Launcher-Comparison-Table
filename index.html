@@ -549,7 +549,6 @@ function updatesLabel(u) {
 }
 
 const SUPPORT_MAP = {
-  '✅':'✅',
   '❌':'✖️',
   '❓':'❔',
   '❗':'🧪',
@@ -561,11 +560,15 @@ function supportSymbol(sym) {
   return esc(SUPPORT_MAP[sym] || sym);
 }
 
+const DRAWER_MAP = {
+  '🔄 Multi-Layout':'🔀 Multi-Layout',
+  '↔️ Horizontal':'⬅️➡️ Horizontal',
+  '↕️ Vertical':'⬆️⬇️ Vertical',
+};
+
 function drawerLabel(drawer) {
   if (!drawer) return '—';
-  if (drawer.indexOf('Multi-Layout') !== -1) return '🔀 Multi-Layout';
-  if (drawer.indexOf('Horizontal') !== -1) return '⬅️➡️ Horizontal';
-  if (drawer.indexOf('Vertical') !== -1) return '⬆️⬇️ Vertical';
+  if (DRAWER_MAP[drawer]) return DRAWER_MAP[drawer];
   return esc(drawer);
 }
 
