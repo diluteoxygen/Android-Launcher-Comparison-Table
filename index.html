@@ -1,740 +1,906 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Android Launcher Comparison Table</title>
-  <link rel="icon" href="App Icons/Icon.png" type="image/png">
-  <style>
-    /* ── Reset & Base ──────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Launcher Comparison Table</title>
+    <link rel="icon" href="App Icons/Icon.png" type="image/png">
+    <style>
+        /* ── Reset & Base ──────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    :root {
-      --bg:        #0f1117;
-      --surface:   #181a20;
-      --surface2:  #1e2028;
-      --border:    #2a2d38;
-      --text:      #e4e6ed;
-      --text2:     #9a9eb2;
-      --accent:    #6c8cff;
-      --accent-dim:#3b4f8a;
-      --green:     #34d399;
-      --yellow:    #fbbf24;
-      --red:       #f87171;
-      --radius:    10px;
-      --shadow:    0 2px 12px rgba(0,0,0,.35);
-    }
+        :root {
+            --bg: #0f1117;
+            --surface: #181a20;
+            --surface2: #1e2028;
+            --border: #2a2d38;
+            --text: #e4e6ed;
+            --text2: #9a9eb2;
+            --accent: #6c8cff;
+            --accent-dim: #3b4f8a;
+            --green: #34d399;
+            --yellow: #fbbf24;
+            --red: #f87171;
+            --radius: 10px;
+            --shadow: 0 2px 12px rgba(0, 0, 0, .35);
+        }
 
-    html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    /* ── Header ────────────────────────────────────────── */
-    .hero {
-      text-align: center;
-      padding: 3.5rem 1.5rem 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero h1 {
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      color: #fff;
-      margin-bottom: .5rem;
-    }
-    .hero h1 .emoji { margin-right: .35em; }
-    .hero p {
-      color: var(--text2);
-      max-width: 640px;
-      margin: 0 auto;
-      font-size: .95rem;
-    }
-    .hero .updated {
-      display: inline-block;
-      margin-top: .75rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: .3rem .85rem;
-      border-radius: 20px;
-      font-size: .8rem;
-      color: var(--text2);
-    }
+        /* ── Header ────────────────────────────────────────── */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
 
-    /* ── Toolbar (search + filters) ────────────────────── */
-    .toolbar {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      align-items: center;
-    }
-    .search-box {
-      flex: 1 1 260px;
-      position: relative;
-    }
-    .search-box svg {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 18px;
-      height: 18px;
-      color: var(--text2);
-    }
-    .search-box input {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .6rem .75rem .6rem 2.5rem;
-      color: var(--text);
-      font-size: .9rem;
-      outline: none;
-      transition: border .2s;
-    }
-    .search-box input::placeholder { color: var(--text2); }
-    .search-box input:focus { border-color: var(--accent); }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -.02em;
+            color: #fff;
+            margin-bottom: .5rem;
+        }
 
-    .filter-select {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .55rem .75rem;
-      color: var(--text);
-      font-size: .85rem;
-      outline: none;
-      cursor: pointer;
-      transition: border .2s;
-      -webkit-appearance: none;
-      appearance: none;
-      min-width: 140px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239a9eb2' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5L8 12l6.5-6.5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      padding-right: 30px;
-    }
-    .filter-select:focus { border-color: var(--accent); }
+        .hero h1 .emoji {
+            margin-right: .35em;
+        }
 
-    .stats {
-      font-size: .8rem;
-      color: var(--text2);
-      margin-left: auto;
-      white-space: nowrap;
-    }
+        .hero p {
+            color: var(--text2);
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: .95rem;
+        }
 
-    /* ── Table wrapper ─────────────────────────────────── */
-    .table-wrap {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1.5rem 2rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
+        .hero .updated {
+            display: inline-block;
+            margin-top: .75rem;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: .3rem .85rem;
+            border-radius: 20px;
+            font-size: .8rem;
+            color: var(--text2);
+        }
 
-    /* ── Table ─────────────────────────────────────────── */
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      font-size: .85rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
+        /* ── Toolbar (search + filters) ────────────────────── */
+        .toolbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+            align-items: center;
+        }
 
-    thead th {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      background: var(--surface2);
-      padding: .7rem .65rem;
-      text-align: left;
-      font-weight: 600;
-      color: var(--text2);
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      border-bottom: 2px solid var(--border);
-      cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
-      transition: color .15s;
-    }
-    thead th:hover { color: var(--accent); }
-    thead th .sort-arrow {
-      display: inline-block;
-      margin-left: 4px;
-      opacity: .35;
-      font-size: .7rem;
-    }
-    thead th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+        .search-box {
+            flex: 1 1 260px;
+            position: relative;
+        }
 
-    tbody tr {
-      transition: background .12s;
-    }
-    tbody tr:hover { background: var(--surface2); }
-    tbody td {
-      padding: .6rem .65rem;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-    tbody tr:last-child td { border-bottom: none; }
+        .search-box svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--text2);
+        }
 
-    /* name cell */
-    .name-cell {
-      display: flex;
-      align-items: center;
-      gap: .55rem;
-      min-width: 200px;
-    }
-    .name-cell img {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      object-fit: cover;
-      flex-shrink: 0;
-      background: var(--surface);
-    }
-    .name-cell span {
-      font-weight: 600;
-      color: #fff;
-    }
+        .search-box input {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: .6rem .75rem .6rem 2.5rem;
+            color: var(--text);
+            font-size: .9rem;
+            outline: none;
+            transition: border .2s;
+        }
 
-    /* badges */
-    .badge {
-      display: inline-block;
-      padding: .15rem .55rem;
-      border-radius: 6px;
-      font-size: .75rem;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-    .badge-free      { background: rgba(52,211,153,.12); color: var(--green); }
-    .badge-freemium  { background: rgba(108,140,255,.12); color: var(--accent); }
-    .badge-paid      { background: rgba(251,191,36,.12); color: var(--yellow); }
-    .badge-trialware { background: rgba(248,113,113,.12); color: var(--red); }
+        .search-box input::placeholder {
+            color: var(--text2);
+        }
 
-    .ads-none      { color: var(--green); }
-    .ads-mild      { color: var(--yellow); }
-    .ads-excessive { color: var(--red); }
-    .ads-unknown   { color: var(--text2); }
+        .search-box input:focus {
+            border-color: var(--accent);
+        }
 
-    .star { color: var(--yellow); letter-spacing: 1px; }
-    .dead { color: var(--text2); }
+        .filter-select {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: .55rem .75rem;
+            color: var(--text);
+            font-size: .85rem;
+            outline: none;
+            cursor: pointer;
+            transition: border .2s;
+            -webkit-appearance: none;
+            appearance: none;
+            min-width: 140px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239a9eb2' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5L8 12l6.5-6.5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
 
-    .code-open   { color: var(--green); }
-    .code-closed { color: var(--text2); }
-    .code-partial { color: var(--yellow); }
+        .filter-select:focus {
+            border-color: var(--accent);
+        }
 
-    .link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: .2rem .55rem;
-      border-radius: 6px;
-      font-size: .75rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--accent);
-      background: rgba(108,140,255,.08);
-      border: 1px solid rgba(108,140,255,.18);
-      transition: background .15s, border-color .15s;
-    }
-    .link-btn:hover {
-      background: rgba(108,140,255,.18);
-      border-color: rgba(108,140,255,.35);
-    }
+        .stats {
+            font-size: .8rem;
+            color: var(--text2);
+            margin-left: auto;
+            white-space: nowrap;
+        }
 
-    .privacy-link {
-      color: var(--text2);
-      text-decoration: none;
-      font-size: .78rem;
-      transition: color .15s;
-    }
-    .privacy-link:hover { color: var(--accent); }
+        /* ── Table wrapper ─────────────────────────────────── */
+        .table-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
 
-    /* ── Legend ─────────────────────────────────────────── */
-    .legend-section {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1.5rem 1.5rem 3rem;
-    }
-    .legend-section h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-    .legend-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: .5rem .75rem;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: .82rem;
-      color: var(--text2);
-      padding: .35rem .55rem;
-      border-radius: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .legend-item .sym { font-size: 1.05rem; flex-shrink: 0; width: 24px; text-align: center; }
+        /* ── Table ─────────────────────────────────────────── */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: .85rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
 
-    /* ── Footer ─────────────────────────────────────────── */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      border-top: 1px solid var(--border);
-      color: var(--text2);
-      font-size: .8rem;
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: var(--surface2);
+            padding: .7rem .65rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text2);
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            border-bottom: 2px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            transition: color .15s;
+        }
 
-    /* ── Empty state ───────────────────────────────────── */
-    .empty-row td {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--text2);
-      font-size: .9rem;
-    }
+        thead th:hover {
+            color: var(--accent);
+        }
 
-    /* ── Responsive ────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .toolbar { flex-direction: column; }
-      .stats { margin-left: 0; }
-      .filter-select { width: 100%; }
-    }
+        thead th .sort-arrow {
+            display: inline-block;
+            margin-left: 4px;
+            opacity: .35;
+            font-size: .7rem;
+        }
 
-    /* scrollbar styling */
-    .table-wrap::-webkit-scrollbar { height: 8px; }
-    .table-wrap::-webkit-scrollbar-track { background: var(--surface); border-radius: 4px; }
-    .table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-    .table-wrap::-webkit-scrollbar-thumb:hover { background: var(--text2); }
+        thead th.sorted .sort-arrow {
+            opacity: 1;
+            color: var(--accent);
+        }
 
-    /* ── Back-to-top button ────────────────────────────── */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s, background .15s;
-      z-index: 10;
-    }
-    .back-to-top.visible { opacity: 1; pointer-events: auto; }
-    .back-to-top:hover { background: var(--accent-dim); color: #fff; }
-  </style>
+        tbody tr {
+            transition: background .12s;
+        }
+
+        tbody tr:hover {
+            background: var(--surface2);
+        }
+
+        tbody td {
+            padding: .6rem .65rem;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* name cell */
+        .name-cell {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            min-width: 200px;
+        }
+
+        .name-cell img {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: var(--surface);
+        }
+
+        .name-cell span {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* badges */
+        .badge {
+            display: inline-block;
+            padding: .15rem .55rem;
+            border-radius: 6px;
+            font-size: .75rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .badge-free {
+            background: rgba(52, 211, 153, .12);
+            color: var(--green);
+        }
+
+        .badge-freemium {
+            background: rgba(108, 140, 255, .12);
+            color: var(--accent);
+        }
+
+        .badge-paid {
+            background: rgba(251, 191, 36, .12);
+            color: var(--yellow);
+        }
+
+        .badge-trialware {
+            background: rgba(248, 113, 113, .12);
+            color: var(--red);
+        }
+
+        .ads-none {
+            color: var(--green);
+        }
+
+        .ads-mild {
+            color: var(--yellow);
+        }
+
+        .ads-excessive {
+            color: var(--red);
+        }
+
+        .ads-unknown {
+            color: var(--text2);
+        }
+
+        .star {
+            color: var(--yellow);
+            letter-spacing: 1px;
+        }
+
+        .dead {
+            color: var(--text2);
+        }
+
+        .code-open {
+            color: var(--green);
+        }
+
+        .code-closed {
+            color: var(--text2);
+        }
+
+        .code-partial {
+            color: var(--yellow);
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: .2rem .55rem;
+            border-radius: 6px;
+            font-size: .75rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--accent);
+            background: rgba(108, 140, 255, .08);
+            border: 1px solid rgba(108, 140, 255, .18);
+            transition: background .15s, border-color .15s;
+        }
+
+        .link-btn:hover {
+            background: rgba(108, 140, 255, .18);
+            border-color: rgba(108, 140, 255, .35);
+        }
+
+        .privacy-link {
+            color: var(--text2);
+            text-decoration: none;
+            font-size: .78rem;
+            transition: color .15s;
+        }
+
+        .privacy-link:hover {
+            color: var(--accent);
+        }
+
+        /* ── Legend ─────────────────────────────────────────── */
+        .legend-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem 3rem;
+        }
+
+        .legend-section h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: .5rem .75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .82rem;
+            color: var(--text2);
+            padding: .35rem .55rem;
+            border-radius: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .legend-item .sym {
+            font-size: 1.05rem;
+            flex-shrink: 0;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ── Footer ─────────────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text2);
+            font-size: .8rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Empty state ───────────────────────────────────── */
+        .empty-row td {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text2);
+            font-size: .9rem;
+        }
+
+        /* ── Responsive ────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .toolbar {
+                flex-direction: column;
+            }
+
+            .stats {
+                margin-left: 0;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+        }
+
+        /* scrollbar styling */
+        .table-wrap::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-wrap::-webkit-scrollbar-track {
+            background: var(--surface);
+            border-radius: 4px;
+        }
+
+        .table-wrap::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .table-wrap::-webkit-scrollbar-thumb:hover {
+            background: var(--text2);
+        }
+
+        /* ── Back-to-top button ────────────────────────────── */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s, background .15s;
+            z-index: 10;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-dim);
+            color: #fff;
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- Hero -->
-<header class="hero">
-  <h1><span class="emoji">🚀</span>Android Launcher Comparison</h1>
-  <p>A comprehensive, community-driven comparison of Android launchers. Find the perfect launcher that checks all your boxes.</p>
-  <span class="updated">Last Updated: February 2026</span>
-</header>
+    <!-- Hero -->
+    <header class="hero">
+        <h1><span class="emoji">🚀</span>Android Launcher Comparison</h1>
+        <p>A comprehensive, community-driven comparison of Android launchers. Find the perfect launcher that checks all
+            your boxes.</p>
+        <span class="updated">Last Updated: June 2026</span>
+    </header>
 
-<!-- Toolbar -->
-<div class="toolbar">
-  <div class="search-box">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="searchInput" placeholder="Search launchers…" autocomplete="off">
-  </div>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search launchers…" autocomplete="off">
+        </div>
 
-  <select class="filter-select" id="filterPrice">
-    <option value="">All Prices</option>
-    <option value="Free">Free</option>
-    <option value="Freemium">Freemium</option>
-    <option value="Paid">Paid</option>
-    <option value="Trialware">Trialware</option>
-  </select>
+        <select class="filter-select" id="filterPrice">
+            <option value="">All Prices</option>
+            <option value="Free">Free</option>
+            <option value="Freemium">Freemium</option>
+            <option value="Paid">Paid</option>
+            <option value="Trialware">Trialware</option>
+        </select>
 
-  <select class="filter-select" id="filterCustom">
-    <option value="">All Customisability</option>
-    <option value="God mode">God mode</option>
-    <option value="Advanced">Advanced</option>
-    <option value="Intermediate">Intermediate</option>
-    <option value="Basic">Basic</option>
-    <option value="Less than basic">Less than basic</option>
-  </select>
+        <select class="filter-select" id="filterCustom">
+            <option value="">All Customisability</option>
+            <option value="God mode">God mode</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Basic">Basic</option>
+            <option value="Less than basic">Less than basic</option>
+        </select>
 
-  <select class="filter-select" id="filterCode">
-    <option value="">All Source Availability</option>
-    <option value="open">Open-Sourced</option>
-    <option value="closed">Closed-Sourced</option>
-    <option value="partial">Partially Open-Sourced</option>
-  </select>
+        <select class="filter-select" id="filterCode">
+            <option value="">All Source Availability</option>
+            <option value="open">Open-Sourced</option>
+            <option value="closed">Closed-Sourced</option>
+            <option value="partial">Partially Open-Sourced</option>
+        </select>
 
-  <select class="filter-select" id="filterAds">
-    <option value="">All Ads Status</option>
-    <option value="none">No Ads</option>
-    <option value="mild">Mild Ads</option>
-    <option value="excessive">Excessive Ads</option>
-  </select>
+        <select class="filter-select" id="filterAds">
+            <option value="">All Ads Status</option>
+            <option value="none">No Ads</option>
+            <option value="mild">Mild Ads</option>
+            <option value="excessive">Excessive Ads</option>
+        </select>
 
-  <span class="stats" id="statsText">Showing all launchers</span>
-</div>
+        <span class="stats" id="statsText">Showing all launchers</span>
+    </div>
 
-<!-- Table -->
-<div class="table-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th data-col="name">Name <span class="sort-arrow">▲</span></th>
-        <th data-col="price">Price <span class="sort-arrow">▲</span></th>
-        <th data-col="ads">Ads/Bloat <span class="sort-arrow">▲</span></th>
-        <th data-col="updates">Updates <span class="sort-arrow">▲</span></th>
-        <th data-col="custom">Customisability <span class="sort-arrow">▲</span></th>
-        <th data-col="drawer">Drawer <span class="sort-arrow">▲</span></th>
-        <th data-col="klwp">KLWP <span class="sort-arrow">▲</span></th>
-        <th data-col="widget">Widget <span class="sort-arrow">▲</span></th>
-        <th data-col="material">Material&nbsp;You <span class="sort-arrow">▲</span></th>
-        <th data-col="landscape">Landscape <span class="sort-arrow">▲</span></th>
-        <th data-col="code">Source <span class="sort-arrow">▲</span></th>
-        <th data-col="quickswitch">QuickSwitch <span class="sort-arrow">▲</span></th>
-        <th data-col="android">Android <span class="sort-arrow">▲</span></th>
-        <th data-col="privacy">Privacy <span class="sort-arrow">▲</span></th>
-        <th>Download</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-</div>
+    <!-- Table -->
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th data-col="name">Name <span class="sort-arrow">▲</span></th>
+                    <th data-col="price">Price <span class="sort-arrow">▲</span></th>
+                    <th data-col="ads">Ads/Bloat <span class="sort-arrow">▲</span></th>
+                    <th data-col="updates">Updates <span class="sort-arrow">▲</span></th>
+                    <th data-col="custom">Customisability <span class="sort-arrow">▲</span></th>
+                    <th data-col="drawer">Drawer <span class="sort-arrow">▲</span></th>
+                    <th data-col="klwp">KLWP <span class="sort-arrow">▲</span></th>
+                    <th data-col="widget">Widget <span class="sort-arrow">▲</span></th>
+                    <th data-col="material">Material&nbsp;You <span class="sort-arrow">▲</span></th>
+                    <th data-col="landscape">Landscape <span class="sort-arrow">▲</span></th>
+                    <th data-col="foldable">Foldable/Tablet <span class="sort-arrow">▲</span></th>
+                    <th data-col="code">Source <span class="sort-arrow">▲</span></th>
+                    <th data-col="fdroid">F-Droid <span class="sort-arrow">▲</span></th>
+                    <th data-col="quickswitch">QuickSwitch <span class="sort-arrow">▲</span></th>
+                    <th data-col="android">Android <span class="sort-arrow">▲</span></th>
+                    <th data-col="privacy">Privacy <span class="sort-arrow">▲</span></th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
 
-<!-- Legend -->
-<section class="legend-section">
-  <h2>Legend</h2>
-  <div class="legend-grid" id="legendGrid"></div>
-</section>
+    <!-- Legend -->
+    <section class="legend-section">
+        <h2>Legend</h2>
+        <div class="legend-grid" id="legendGrid"></div>
+    </section>
 
-<!-- Footer -->
-<footer>
-  <p>Credits to <a href="https://x.com/grabsterstudios" target="_blank" rel="noopener">Grabster Studios</a> &amp; <a href="https://www.reddit.com/user/Grabstertv/" target="_blank" rel="noopener">Grabstertv</a> · Source on <a href="https://github.com/diluteoxygen/Android-Launcher-Comparison-Table" target="_blank" rel="noopener">GitHub</a></p>
-</footer>
+    <!-- Footer -->
+    <footer>
+        <p>Credits to <a href="https://x.com/grabsterstudios" target="_blank" rel="noopener">Grabster Studios</a> &amp;
+            <a href="https://www.reddit.com/user/Grabstertv/" target="_blank" rel="noopener">Grabstertv</a> · Source on
+            <a href="https://github.com/diluteoxygen/Android-Launcher-Comparison-Table" target="_blank"
+                rel="noopener">GitHub</a></p>
+    </footer>
 
-<!-- Back to top -->
-<button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15" />
+        </svg>
+    </button>
 
-<script>
-// ── DATA ────────────────────────────────────────────────
-const launchers = [
-  { name:"Nova Launcher", icon:"Nova Launcher.jpg", price:"Freemium", ads:"none", updates:3, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"✅", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❌", android:"8.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.teslacoilsw.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher" },
-  { name:"Smart Launcher 7", icon:"Smart Launcher 6.jpg", price:"Freemium", ads:"none", updates:4, custom:"Advanced", drawer:"↕️ Vertical", klwp:"✅", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❗", android:"7.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/ginlemon.flowerfree/latest/", download:"https://play.google.com/store/apps/details?id=ginlemon.flowerfree" },
-  { name:"Niagara Launcher", icon:"Niagara Launcher.jpg", price:"Freemium", ads:"none", updates:4, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❌", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/bitpit.launcher/latest/", download:"https://play.google.com/store/apps/details?id=bitpit.launcher" },
-  { name:"Lightning Launcher", icon:"Lightning Launcher.jpg", price:"Paid", ads:"none", updates:-1, custom:"God mode", drawer:"🔄 Multi-Layout", klwp:"✅", widget:"✅", material:"❌", landscape:"❓", code:"closed", quickswitch:"❗", android:"❓", privacy:"", download:"https://play.google.com/store/apps/details?id=net.pierrox.lightning_launcher_extreme" },
-  { name:"Lawnchair 15 (Beta)", icon:"Lawnchair (Alpha v12+).png", price:"Free", ads:"none", updates:4, custom:"Advanced", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"✅", landscape:"✅", code:"open", quickswitch:"✅", android:"8.0+", privacy:"", download:"https://github.com/LawnchairLauncher/lawnchair/releases" },
-  { name:"Lawnchair 2", icon:"Lawnchair 2 (Play Store version).png", price:"Free", ads:"none", updates:-1, custom:"Advanced", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"✅", code:"open", quickswitch:"✅", android:"8.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/ch.deletescape.lawnchair.plah/latest/", download:"https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah" },
-  { name:"OneUI Home", icon:"OneUI Home.png", price:"Free", ads:"none", updates:3, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"➰", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❗", android:"9.0+", privacy:"", download:"https://play.google.com/store/apps/details?id=com.sec.android.app.launcher" },
-  { name:"Action Launcher", icon:"Action Launcher.png", price:"Freemium", ads:"none", updates:2, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"✅", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/", download:"https://play.google.com/store/apps/details?id=com.actionlauncher.playstore" },
-  { name:"Neo Launcher", icon:"Neo Launcher.png", price:"Free", ads:"none", updates:2, custom:"Advanced", drawer:"↕️ Vertical", klwp:"✅", widget:"✅", material:"✅", landscape:"✅", code:"open", quickswitch:"❌", android:"8.0+", privacy:"", download:"https://github.com/NeoApplications/Neo-Launcher/releases" },
-  { name:"Neo Launcher (Sci-Fi)", icon:"Neo Launcher (Sci-Fi).jpg", price:"Freemium", ads:"excessive", updates:4, custom:"Intermediate", drawer:"Other", klwp:"❌", widget:"✅", material:"❌", landscape:"❓", code:"closed", quickswitch:"❗", android:"❓", privacy:"", download:"https://play.google.com/store/apps/details?id=appmania.launcher.scifi" },
-  { name:"Nothing Launcher", icon:"Nothing Launcher.png", price:"Free", ads:"none", updates:3, custom:"Basic", drawer:"↕️ Vertical", klwp:"❌", widget:"✅", material:"✅", landscape:"❌", code:"closed", quickswitch:"❗", android:"8.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.nothing.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.nothing.launcher" },
-  { name:"Flick Launcher", icon:"Flick Launcher.jpg", price:"Freemium", ads:"", updates:-1, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"✅", widget:"✅", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.universallauncher.universallauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.universallauncher.universallauncher" },
-  { name:"Hyperion Launcher", icon:"Hyperion Launcher.jpg", price:"Freemium", ads:"none", updates:-1, custom:"Advanced", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"✅", code:"partial", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/projekt.launcher/latest/", download:"https://play.google.com/store/apps/details?id=projekt.launcher" },
-  { name:"Evie Launcher", icon:"Evie launcher.png", price:"Freemium", ads:"unknown", updates:-1, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"❓", code:"closed", quickswitch:"❗", android:"❓", privacy:"", download:"" },
-  { name:"Pear Launcher", icon:"Pear Launcher.png", price:"Freemium", ads:"", updates:-1, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.pearlauncher.pearlauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.pearlauncher.pearlauncher" },
-  { name:"Rootless Pixel Launcher", icon:"Rootless Pixel Launcher.png", price:"Free", ads:"none", updates:-1, custom:"Basic", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"✅", code:"open", quickswitch:"✅", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/amirz.rootless.nexuslauncher/latest/", download:"https://play.google.com/store/apps/details?id=amirz.rootless.nexuslauncher" },
-  { name:"Microsoft Launcher", icon:"Microsoft Launcher.png", price:"Free", ads:"mild", updates:4, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"✅", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❗", android:"8.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.microsoft.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.microsoft.launcher" },
-  { name:"Mint Launcher", icon:"Mint Launcher.png", price:"Free", ads:"mild", updates:2, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"❌", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.mi.android.go.globallauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.mi.android.go.globallauncher" },
-  { name:"Alphabet Launcher", icon:"Alphabet Launcher.png", price:"Free", ads:"", updates:-1, custom:"Less than basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"", privacy:"", download:"https://play.google.com/store/apps/details?id=com.grosalex.alphabeticallauncher" },
-  { name:"Computer Launcher", icon:"Computer Launcher.png", price:"Freemium", ads:"", updates:4, custom:"Intermediate", drawer:"Other", klwp:"➰", widget:"✅", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.protheme.launcher.winx.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.protheme.launcher.winx.launcher" },
-  { name:"Square Home", icon:"Square Home.png", price:"Freemium", ads:"none", updates:4, custom:"Intermediate", drawer:"Other", klwp:"❌", widget:"✅", material:"✅", landscape:"✅", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/reports/com.ss.squarehome2/latest", download:"https://play.google.com/store/apps/details?id=com.ss.squarehome2" },
-  { name:"Go Launcher", icon:"Go Launcher.png", price:"Freemium", ads:"excessive", updates:3, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"➰", widget:"✅", material:"❌", landscape:"➰", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.gau.go.launcherex/latest/", download:"https://play.google.com/store/apps/details?id=com.gau.go.launcherex" },
-  { name:"HiOS Launcher 8", icon:"HiOS Launcher 8.png", price:"Free", ads:"excessive", updates:3, custom:"Advanced", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"➰", code:"closed", quickswitch:"❗", android:"7.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.transsion.hilauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.transsion.hilauncher" },
-  { name:"Holo Launcher", icon:"Holo Launcher.png", price:"Freemium", ads:"none", updates:-1, custom:"Basic", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.mobint.hololauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.mobint.hololauncher" },
-  { name:"Google Now", icon:"Google Now.jpg", price:"Free", ads:"none", updates:-1, custom:"Basic", drawer:"↕️ Vertical", klwp:"❓", widget:"✅", material:"❌", landscape:"", code:"unknown", quickswitch:"❌", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.google.android.launcher/latest/", download:"https://www.apkmirror.com/apk/google-inc/google-now-launcher/google-now-launcher-1-4-large-release/" },
-  { name:"ASAP Launcher", icon:"ASAP launcher.png", price:"Freemium", ads:"", updates:1, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"➰", widget:"❌", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest", download:"https://play.google.com/store/apps/details?id=com.citc.asap" },
-  { name:"Yasan Launcher", icon:"Yasan Launcher.png", price:"Free", ads:"none", updates:2, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"❌", widget:"✅", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"10.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/yasan.space.mnml.ai.launcher/latest/", download:"https://play.google.com/store/apps/details?id=yasan.space.mnml.ai.launcher" },
-  { name:"AIO Launcher", icon:"AIO Launcher.png", price:"Freemium", ads:"", updates:4, custom:"Advanced", drawer:"↕️ Vertical", klwp:"❌", widget:"✅", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/", download:"https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher" },
-  { name:"XOS Launcher", icon:"XOS Launcher.png", price:"Freemium", ads:"mild", updates:3, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"➰", code:"closed", quickswitch:"❗", android:"7.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.transsion.XOSLauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.transsion.XOSLauncher" },
-  { name:"Total Launcher", icon:"Total Launcher.png", price:"Freemium", ads:"none", updates:3, custom:"God mode", drawer:"🔄 Multi-Layout", klwp:"✅", widget:"✅", material:"❌", landscape:"✅", code:"closed", quickswitch:"❌", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.ss.launcher2/latest/", download:"https://play.google.com/store/apps/details?id=com.ss.launcher2" },
-  { name:"Wide Launcher", icon:"Wide Launcher.png", price:"Freemium", ads:"", updates:2, custom:"Advanced", drawer:"↕️ Vertical", klwp:"❌", widget:"✅", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"6.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.shouter.widelauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.shouter.widelauncher" },
-  { name:"Linux CLI Launcher", icon:"Linux CLI Launcher.png", price:"Free", ads:"none", updates:4, custom:"Advanced", drawer:"Other", klwp:"❌", widget:"❌", material:"❌", landscape:"", code:"open", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/ohi.andre.consolelauncher/latest/", download:"https://play.google.com/store/apps/details?id=ohi.andre.consolelauncher" },
-  { name:"ADW Launcher 2", icon:"ADW Launcher 2.jpg", price:"Freemium", ads:"", updates:-1, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"✅", widget:"✅", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"2.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/", download:"https://play.google.com/store/apps/details?id=org.adw.launcher" },
-  { name:"Lean Launcher", icon:"Lean Launcher.png", price:"Free", ads:"none", updates:-1, custom:"Basic", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"✅", code:"open", quickswitch:"✅", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.hdeva.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.hdeva.launcher" },
-  { name:"Ap15 Launcher", icon:"Ap15 Launcher.png", price:"Freemium", ads:"none", updates:2, custom:"Less than basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest", download:"https://play.google.com/store/apps/details?id=com.aurhe.ap15" },
-  { name:"Ruthless Launcher", icon:"Ruthless Launcher.png", price:"Free", ads:"none", updates:3, custom:"Advanced", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"", code:"closed", quickswitch:"❗", android:"7.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/shubh.ruthless/latest/", download:"https://play.google.com/store/apps/details?id=shubh.ruthless" },
-  { name:"Apex Launcher", icon:"Apex Launcher.png", price:"Trialware", ads:"mild", updates:2, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"✅", widget:"✅", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.anddoes.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.anddoes.launcher" },
-  { name:"Launcher iOS 18", icon:"Launcher iOS 16.png", price:"Freemium", ads:"none", updates:3, custom:"Advanced", drawer:"↔️ Horizontal", klwp:"❌", widget:"✅", material:"❌", landscape:"❌", code:"closed", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.luutinhit.ioslauncher/latest/", download:"https://play.google.com/store/apps/details?id=com.luutinhit.ioslauncher" },
-  { name:"Launcher<3", icon:"Launcher3.png", price:"Free", ads:"none", updates:2, custom:"Basic", drawer:"↕️ Vertical", klwp:"➰", widget:"✅", material:"❌", landscape:"✅", code:"open", quickswitch:"✅", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.jasonkung.launcher3/latest/", download:"https://play.google.com/store/apps/details?id=com.jasonkung.launcher3" },
-  { name:"Ratio Launcher", icon:"Ratio Launcher.png", price:"Freemium", ads:"none", updates:3, custom:"Advanced", drawer:"🔄 Multi-Layout", klwp:"➰", widget:"❌", material:"❌", landscape:"❌", code:"closed", quickswitch:"❗", android:"8.0+", privacy:"", download:"https://play.google.com/store/apps/details?id=com.bllocosn" },
-  { name:"KISS Launcher", icon:"KISS Launcher.png", price:"Free", ads:"none", updates:4, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"❓", widget:"✅", material:"✅", landscape:"✅", code:"open", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/fr.neamar.kiss/latest/", download:"https://play.google.com/store/apps/details?id=fr.neamar.kiss&hl=en&gl=US" },
-  { name:"Sentien Launcher", icon:"Sentien Launcher.png", price:"Free", ads:"none", updates:1, custom:"Basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"✅", code:"open", quickswitch:"❗", android:"4.0+", privacy:"", download:"" },
-  { name:"Indistructable Launcher", icon:"Indistructable Launcher.png", price:"Freemium", ads:"", updates:2, custom:"Basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"❌", code:"closed", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.indistractablelauncher.android/latest/", download:"https://play.google.com/store/apps/details?id=com.indistractablelauncher.android" },
-  { name:"OLauncher", icon:"OLauncher.png", price:"Free", ads:"none", updates:4, custom:"Basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"➰", code:"open", quickswitch:"❗", android:"6.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/app.olauncher/latest/", download:"https://play.google.com/store/apps/details?id=app.olauncher" },
-  { name:"Kvæsitso", icon:"Kvæsitso.png", price:"Free", ads:"none", updates:4, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"❌", widget:"✅", material:"✅", landscape:"✅", code:"open", quickswitch:"❗", android:"8.0+", privacy:"", download:"https://github.com/MM2-0/Kvaesitso/releases" },
-  { name:"Blank Launcher", icon:"Blank Launcher.png", price:"Free", ads:"none", updates:-1, custom:"Less than basic", drawer:"↕️ Vertical", klwp:"➰", widget:"❌", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"4.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/tyastono.taufiq.blanklauncher/latest/", download:"https://play.google.com/store/apps/details?id=tyastono.taufiq.blanklauncher" },
-  { name:"Apus Launcher", icon:"Apus Launcher.png", price:"Freemium", ads:"excessive", updates:2, custom:"Intermediate", drawer:"🔄 Multi-Layout", klwp:"➰", widget:"✅", material:"❌", landscape:"✅", code:"closed", quickswitch:"❗", android:"5.0+", privacy:"https://reports.exodus-privacy.eu.org/en/reports/com.apusapps.launcher/latest/", download:"https://play.google.com/store/apps/details?id=com.apusapps.launcher" },
-  { name:"Minimal Launcher", icon:"Minimal Launcher.png", price:"Free", ads:"none", updates:2, custom:"Less than basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"❌", code:"open", quickswitch:"❗", android:"4.0+", privacy:"", download:"https://f-droid.org/packages/com.finnmglas.launcher/" },
-  { name:"Emerald Launcher", icon:"Emerald Launcher.png", price:"Free", ads:"", updates:1, custom:"Basic", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"✅", code:"open", quickswitch:"❗", android:"2.0+", privacy:"", download:"https://f-droid.org/en/packages/ru.henridellal.emerald/" },
-  { name:"Tiny bit Launcher", icon:"Tiny bit Launcher.png", price:"Free", ads:"none", updates:2, custom:"Basic", drawer:"Other", klwp:"➰", widget:"❌", material:"❌", landscape:"❓", code:"open", quickswitch:"❗", android:"", privacy:"https://reports.exodus-privacy.eu.org/en/reports/org.n277.lynxlauncher/latest/", download:"" },
-  { name:"Lens Launcher", icon:"Lens Launcher.jpg", price:"Free", ads:"none", updates:3, custom:"Basic", drawer:"Other", klwp:"❌", widget:"❌", material:"❌", landscape:"❓", code:"open", quickswitch:"❗", android:"", privacy:"https://reports.exodus-privacy.eu.org/en/reports/nickrout.lenslauncher/latest/", download:"https://play.google.com/store/apps/details?id=nickrout.lenslauncher&hl=en&gl=US" },
-  { name:"Starlight Launcher", icon:"Starlight Launcher.jpg", price:"Free", ads:"none", updates:3, custom:"Basic", drawer:"Other", klwp:"❌", widget:"✅", material:"❌", landscape:"❓", code:"open", quickswitch:"❗", android:"", privacy:"", download:"https://play.google.com/store/apps/details?id=kenneth.app.starlightlauncher" },
-  { name:"Fossify Launcher", icon:"", price:"Free", ads:"none", updates:4, custom:"Basic", drawer:"🔄 Multi-Layout", klwp:"❌", widget:"✅", material:"✅", landscape:"❌", code:"open", quickswitch:"❗", android:"6.0+", privacy:"", download:"https://github.com/FossifyOrg/Launcher/releases" },
-  { name:"µLauncher", icon:"", price:"Free", ads:"none", updates:4, custom:"Less than basic", drawer:"Other", klwp:"❌", widget:"✅", material:"✅", landscape:"✅", code:"open", quickswitch:"❗", android:"7.0+", privacy:"", download:"https://github.com/jrpie/launcher/releases" },
-  { name:"Stario", icon:"", price:"Free", ads:"none", updates:4, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"❌", widget:"✅", material:"✅", landscape:"❓", code:"open", quickswitch:"❗", android:"8.0+", privacy:"", download:"https://github.com/albu-razvan/Stario/releases" },
-  { name:"Discreet Launcher", icon:"", price:"Free", ads:"none", updates:3, custom:"Basic", drawer:"🔄 Multi-Layout", klwp:"❌", widget:"❌", material:"❌", landscape:"❌", code:"open", quickswitch:"❗", android:"5.0+", privacy:"", download:"https://github.com/falzonv/discreet-launcher/releases" },
-  { name:"Lunar Launcher", icon:"", price:"Free", ads:"none", updates:3, custom:"Intermediate", drawer:"↕️ Vertical", klwp:"❌", widget:"❌", material:"❌", landscape:"❌", code:"open", quickswitch:"❗", android:"7.0+", privacy:"", download:"https://github.com/iamrasel/lunar-launcher/releases" },
-  { name:"Pie Launcher", icon:"", price:"Free", ads:"none", updates:3, custom:"Basic", drawer:"Other", klwp:"❌", widget:"❌", material:"❌", landscape:"❓", code:"open", quickswitch:"❗", android:"4.4+", privacy:"", download:"https://github.com/markusfisch/PieLauncher" },
-];
+    <script>
+        // ── DATA ────────────────────────────────────────────────
+        const launchers = [
+            { name: "Action Launcher", icon: "Action Launcher.png", price: "Freemium", ads: "none", updates: 2, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/", download: "https://play.google.com/store/apps/details?id=com.actionlauncher.playstore" },
+            { name: "AIO Launcher", icon: "AIO Launcher.png", price: "Freemium", ads: "none", updates: 4, custom: "Advanced", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/", download: "https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher" },
+            { name: "Ap15 Launcher", icon: "Ap15 Launcher.png", price: "Freemium", ads: "none", updates: 2, custom: "Less than basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest", download: "https://play.google.com/store/apps/details?id=com.aurhe.ap15" },
+            { name: "Apex Launcher", icon: "Apex Launcher.png", price: "Trialware", ads: "mild", updates: 1, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.anddoes.launcher/latest/", download: "" },
+            { name: "Apus Launcher", icon: "Apus Launcher.png", price: "Freemium", ads: "excessive", updates: 2, custom: "Intermediate", drawer: "🔄 Multi-Layout", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.apusapps.launcher/latest/", download: "" },
+            { name: "Before Launcher", icon: "Before Launcher.png", price: "Freemium", ads: "none", updates: 3, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "❓", widget: "✅", material: "❓", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "❔", privacy: "", download: "https://play.google.com/store/apps/details?id=com.beforesoft.launcher" },
+            { name: "Bliss Launcher", icon: "Bliss Launcher.png", price: "Free", ads: "none", updates: 2, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "✅", widget: "✅", material: "✅", landscape: "❓", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❗", android: "9.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/foundation.e.blisslauncher/latest/", download: "" },
+            { name: "Bridge Launcher", icon: "Bridge Launcher.png", price: "Free", ads: "none", updates: 2, custom: "Advanced", drawer: "Other", klwp: "✅", widget: "❌", material: "❌", landscape: "❓", foldable: "✅", code: "open", fdroid: "❌", quickswitch: "❌", android: "8.0+", privacy: "", download: "https://github.com/bridgelauncher" },
+            { name: "Discreet Launcher", icon: "Discreet Launcher.png", price: "Free", ads: "none", updates: 3, custom: "Basic", drawer: "🔄 Multi-Layout", klwp: "❌", widget: "❌", material: "❌", landscape: "❌", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "5.0+", privacy: "", download: "https://github.com/falzonv/discreet-launcher/releases" },
+            { name: "DNA Launcher", icon: "DNA Launcher.png", price: "Freemium", ads: "none", updates: 3, custom: "Intermediate", drawer: "↔️ Horizontal", klwp: "❓", widget: "✅", material: "❌", landscape: "❓", foldable: "➰", code: "closed", fdroid: "❌", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.atlantis.launcher/latest/", download: "https://play.google.com/store/apps/details?id=com.atlantis.launcher" },
+            { name: "Fossify Launcher", icon: "Fossify Launcher.png", price: "Free", ads: "none", updates: 3, custom: "Basic", drawer: "🔄 Multi-Layout", klwp: "❌", widget: "✅", material: "✅", landscape: "❌", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "6.0+", privacy: "", download: "https://github.com/FossifyOrg/Launcher/releases" },
+            { name: "Go Launcher", icon: "Go Launcher.png", price: "Freemium", ads: "excessive", updates: 3, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "➰", widget: "✅", material: "❌", landscape: "➰", foldable: "➰", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.gau.go.launcherex/latest/", download: "https://play.google.com/store/apps/details?id=com.gau.go.launcherex" },
+            { name: "HiOS Launcher 8", icon: "HiOS Launcher 8.png", price: "Free", ads: "excessive", updates: 3, custom: "Advanced", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "➰", foldable: "➰", code: "closed", fdroid: "❌", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.transsion.hilauncher/latest/", download: "https://play.google.com/store/apps/details?id=com.transsion.hilauncher" },
+            { name: "Indistractable Launcher", icon: "Indistructable Launcher.png", price: "Freemium", ads: "unknown", updates: 2, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "❌", foldable: "❌", code: "closed", fdroid: "❌", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.indistractablelauncher.android/latest/", download: "https://play.google.com/store/apps/details?id=com.indistractablelauncher.android" },
+            { name: "KISS Launcher", icon: "KISS Launcher.png", price: "Free", ads: "none", updates: 4, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "❓", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/fr.neamar.kiss/latest/", download: "https://play.google.com/store/apps/details?id=fr.neamar.kiss&hl=en&gl=US" },
+            { name: "Kvæsitso", icon: "Kvæsitso.png", price: "Free", ads: "none", updates: 4, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❗", android: "8.0+", privacy: "", download: "https://github.com/MM2-0/Kvaesitso/releases" },
+            { name: "Launcher iOS 18", icon: "Launcher iOS 16.png", price: "Freemium", ads: "none", updates: 3, custom: "Advanced", drawer: "↔️ Horizontal", klwp: "❌", widget: "✅", material: "❌", landscape: "❌", foldable: "❌", code: "closed", fdroid: "❌", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.luutinhit.ioslauncher/latest/", download: "" },
+            { name: "Launcher<3", icon: "Launcher3.png", price: "Free", ads: "none", updates: 2, custom: "Basic", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "✅", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.jasonkung.launcher3/latest/", download: "" },
+            { name: "Lawnchair 15 (Beta)", icon: "Lawnchair (Alpha v12+).png", price: "Free", ads: "none", updates: 4, custom: "Advanced", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "✅", android: "8.0+", privacy: "", download: "https://github.com/LawnchairLauncher/lawnchair/releases" },
+            { name: "Lens Launcher", icon: "Lens Launcher.jpg", price: "Free", ads: "none", updates: 3, custom: "Basic", drawer: "Other", klwp: "❌", widget: "❌", material: "❌", landscape: "❓", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "❔", privacy: "https://reports.exodus-privacy.eu.org/en/reports/nickrout.lenslauncher/latest/", download: "https://play.google.com/store/apps/details?id=nickrout.lenslauncher&hl=en&gl=US" },
+            { name: "Lunar Launcher", icon: "Lunar Launcher.png", price: "Free", ads: "none", updates: 2, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "❌", foldable: "❌", code: "open", fdroid: "✅", quickswitch: "❗", android: "8.0+", privacy: "", download: "https://github.com/iamrasel/lunar-launcher/releases" },
+            { name: "Lynx Launcher", icon: "Lynx Launcher.png", price: "Freemium", ads: "none", updates: 2, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "✅", landscape: "❓", foldable: "❌", code: "closed", fdroid: "❌", quickswitch: "❗", android: "12.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/org.n277.lynxlauncher/latest/", download: "https://play.google.com/store/apps/details?id=org.n277.lynxlauncher" },
+            { name: "Microsoft Launcher", icon: "Microsoft Launcher.png", price: "Free", ads: "mild", updates: 4, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.microsoft.launcher/latest/", download: "https://play.google.com/store/apps/details?id=com.microsoft.launcher" },
+            { name: "Minimal Launcher", icon: "Minimal Launcher.png", price: "Free", ads: "none", updates: 2, custom: "Less than basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "❌", foldable: "❌", code: "open", fdroid: "✅", quickswitch: "❗", android: "4.0+", privacy: "", download: "" },
+            { name: "minimalist phone®", icon: "minimalist phone®.png", price: "Freemium", ads: "none", updates: 3, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❓", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "❔", privacy: "", download: "https://play.google.com/store/apps/details?id=com.qqlabs.minimalistlauncher" },
+            { name: "Mint Launcher", icon: "Mint Launcher.png", price: "Free", ads: "mild", updates: 2, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "❌", foldable: "❌", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.mi.android.go.globallauncher/latest/", download: "https://play.google.com/store/apps/details?id=com.mi.android.go.globallauncher" },
+            { name: "Neo Launcher", icon: "Neo Launcher.png", price: "Free", ads: "none", updates: 1, custom: "Advanced", drawer: "↕️ Vertical", klwp: "✅", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❌", android: "8.0+", privacy: "", download: "https://github.com/NeoApplications/Neo-Launcher/releases" },
+            { name: "Neo Launcher (Sci-Fi)", icon: "Neo Launcher (Sci-Fi).jpg", price: "Freemium", ads: "excessive", updates: 4, custom: "Intermediate", drawer: "Other", klwp: "❌", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "❔", privacy: "", download: "https://play.google.com/store/apps/details?id=appmania.launcher.scifi" },
+            { name: "Niagara Launcher", icon: "Niagara Launcher.jpg", price: "Freemium", ads: "none", updates: 4, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "✅", landscape: "➰", foldable: "➰", code: "closed", fdroid: "❌", quickswitch: "❌", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/bitpit.launcher/latest/", download: "https://play.google.com/store/apps/details?id=bitpit.launcher" },
+            { name: "Nothing Launcher", icon: "Nothing Launcher.png", price: "Free", ads: "none", updates: 3, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "✅", landscape: "❌", foldable: "❌", code: "closed", fdroid: "❌", quickswitch: "❗", android: "15.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.nothing.launcher/latest/", download: "https://play.google.com/store/apps/details?id=com.nothing.launcher" },
+            { name: "Nova Launcher", icon: "Nova Launcher.jpg", price: "Freemium", ads: "mild", updates: 3, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❌", android: "8.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.teslacoilsw.launcher/latest/", download: "https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher" },
+            { name: "Octopi Launcher", icon: "Octopi Launcher.png", price: "Freemium", ads: "none", updates: 3, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "❓", widget: "✅", material: "✅", landscape: "❓", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "8.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.otp.octopilauncher/latest/", download: "https://play.google.com/store/apps/details?id=com.otp.octopilauncher" },
+            { name: "OLauncher", icon: "OLauncher.png", price: "Free", ads: "none", updates: 4, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "➰", foldable: "❌", code: "open", fdroid: "✅", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/app.olauncher/latest/", download: "https://play.google.com/store/apps/details?id=app.olauncher" },
+            { name: "OneUI Home", icon: "OneUI Home.png", price: "Free", ads: "none", updates: 3, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "➰", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "9.0+", privacy: "", download: "https://play.google.com/store/apps/details?id=com.sec.android.app.launcher" },
+            { name: "Pie Launcher", icon: "Pie Launcher.png", price: "Free", ads: "none", updates: 3, custom: "Basic", drawer: "Other", klwp: "❌", widget: "❌", material: "❌", landscape: "❓", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "4.4+", privacy: "", download: "https://github.com/markusfisch/PieLauncher" },
+            { name: "Ratio Launcher", icon: "Ratio Launcher.png", price: "Freemium", ads: "none", updates: 3, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "➰", widget: "❌", material: "❌", landscape: "❌", foldable: "❌", code: "closed", fdroid: "❌", quickswitch: "❗", android: "8.0+", privacy: "", download: "https://play.google.com/store/apps/details?id=com.bllocosn" },
+            { name: "Ruthless Launcher", icon: "Ruthless Launcher.png", price: "Free", ads: "none", updates: 3, custom: "Advanced", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/shubh.ruthless/latest/", download: "" },
+            { name: "Smart Launcher 6", icon: "Smart Launcher 6.jpg", price: "Freemium", ads: "none", updates: 4, custom: "Advanced", drawer: "↕️ Vertical", klwp: "✅", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/ginlemon.flowerfree/latest/", download: "https://play.google.com/store/apps/details?id=ginlemon.flowerfree" },
+            { name: "Square Home", icon: "Square Home.png", price: "Freemium", ads: "none", updates: 4, custom: "Intermediate", drawer: "Other", klwp: "❌", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/reports/com.ss.squarehome2/latest", download: "https://play.google.com/store/apps/details?id=com.ss.squarehome2" },
+            { name: "Stario", icon: "Stario.png", price: "Free", ads: "none", updates: "3 🪦", custom: "Intermediate", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "✅", landscape: "❓", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "8.0+", privacy: "", download: "https://github.com/albu-razvan/Stario/releases" },
+            { name: "Starlight Launcher", icon: "Starlight Launcher.jpg", price: "Free", ads: "none", updates: 3, custom: "Basic", drawer: "Other", klwp: "❌", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "❔", privacy: "", download: "https://play.google.com/store/apps/details?id=kenneth.app.starlightlauncher" },
+            { name: "Tiny bit Launcher", icon: "Tiny bit Launcher.png", price: "Free", ads: "none", updates: 2, custom: "Basic", drawer: "Other", klwp: "➰", widget: "❌", material: "❌", landscape: "❓", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "❔", privacy: "https://reports.exodus-privacy.eu.org/en/reports/org.n277.lynxlauncher/latest/", download: "https://play.google.com/store/apps/details?id=rocks.tbog.tblauncher&hl=en_US" },
+            { name: "Total Launcher", icon: "Total Launcher.png", price: "Freemium", ads: "none", updates: 3, custom: "God mode", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❌", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.ss.launcher2/latest/", download: "https://play.google.com/store/apps/details?id=com.ss.launcher2" },
+            { name: "Wide Launcher", icon: "Wide Launcher.png", price: "Freemium", ads: "unknown", updates: 2, custom: "Advanced", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "6.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.shouter.widelauncher/latest/", download: "" },
+            { name: "XOS Launcher", icon: "XOS Launcher.png", price: "Freemium", ads: "mild", updates: 3, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "➰", foldable: "➰", code: "closed", fdroid: "❌", quickswitch: "❗", android: "7.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.transsion.XOSLauncher/latest/", download: "https://play.google.com/store/apps/details?id=com.transsion.XOSLauncher" },
+            { name: "Yasan Launcher", icon: "Yasan Launcher.png", price: "Free", ads: "none", updates: 2, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "❌", landscape: "✅", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "10.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/yasan.space.mnml.ai.launcher/latest/", download: "https://play.google.com/store/apps/details?id=yasan.space.mnml.ai.launcher" },
+            { name: "µLauncher", icon: "µLauncher.png", price: "Free", ads: "none", updates: 4, custom: "Less than basic", drawer: "Other", klwp: "❌", widget: "✅", material: "✅", landscape: "✅", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "5.0+", privacy: "", download: "https://github.com/jrpie/launcher/releases" },
+            { name: "ADW Launcher 2", icon: "ADW Launcher 2.jpg", price: "Freemium", ads: "unknown", updates: -1, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "✅", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "2.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/", download: "https://play.google.com/store/apps/details?id=org.adw.launcher" },
+            { name: "Alphabet Launcher", icon: "Alphabet Launcher.png", price: "Free", ads: "unknown", updates: -1, custom: "Less than basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "❔", privacy: "", download: "" },
+            { name: "ASAP Launcher", icon: "ASAP launcher.png", price: "Freemium", ads: "unknown", updates: -1, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "➰", widget: "❌", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest", download: "" },
+            { name: "Blank Launcher", icon: "Blank Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Less than basic", drawer: "↕️ Vertical", klwp: "➰", widget: "❌", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/tyastono.taufiq.blanklauncher/latest/", download: "" },
+            { name: "Computer Launcher", icon: "Computer Launcher.png", price: "Freemium", ads: "unknown", updates: -1, custom: "Intermediate", drawer: "Other", klwp: "➰", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.protheme.launcher.winx.launcher/latest/", download: "" },
+            { name: "Emerald Launcher", icon: "Emerald Launcher.png", price: "Free", ads: "unknown", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❗", android: "2.0+", privacy: "", download: "" },
+            { name: "Evie Launcher", icon: "Evie launcher.png", price: "Freemium", ads: "unknown", updates: -1, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "❔", privacy: "", download: "" },
+            { name: "Flick Launcher", icon: "Flick Launcher.jpg", price: "Freemium", ads: "unknown", updates: -1, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "✅", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.universallauncher.universallauncher/latest/", download: "" },
+            { name: "Google Now", icon: "Google Now.jpg", price: "Free", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "❓", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "unknown", fdroid: "❌", quickswitch: "❌", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.google.android.launcher/latest/", download: "https://www.apkmirror.com/apk/google-inc/google-now-launcher/google-now-launcher-1-4-large-release/" },
+            { name: "Holo Launcher", icon: "Holo Launcher.png", price: "Freemium", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.mobint.hololauncher/latest/", download: "" },
+            { name: "Hyperion Launcher", icon: "Hyperion Launcher.jpg", price: "Freemium", ads: "none", updates: -1, custom: "Advanced", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "partial", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/projekt.launcher/latest/", download: "https://play.google.com/store/apps/details?id=projekt.launcher" },
+            { name: "Lawnchair 2 (Legacy Play Store)", icon: "Lawnchair 2 (Play Store version).png", price: "Free", ads: "none", updates: -1, custom: "Advanced", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "✅", android: "8.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/ch.deletescape.lawnchair.plah/latest/", download: "https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah" },
+            { name: "Lean Launcher", icon: "Lean Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "✅", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.hdeva.launcher/latest/", download: "https://play.google.com/store/apps/details?id=com.hdeva.launcher" },
+            { name: "Lightning Launcher", icon: "Lightning Launcher.jpg", price: "Paid", ads: "none", updates: -1, custom: "God mode", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "❔", privacy: "", download: "" },
+            { name: "Linux CLI Launcher", icon: "Linux CLI Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Advanced", drawer: "Other", klwp: "❌", widget: "❌", material: "❌", landscape: "❓", foldable: "❓", code: "open", fdroid: "✅", quickswitch: "❗", android: "4.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/ohi.andre.consolelauncher/latest/", download: "" },
+            { name: "Pear Launcher", icon: "Pear Launcher.png", price: "Freemium", ads: "none", updates: -1, custom: "Intermediate", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "❓", foldable: "❓", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.pearlauncher.pearlauncher/latest/", download: "https://play.google.com/store/apps/details?id=com.pearlauncher.pearlauncher" },
+            { name: "Rootless Pixel Launcher", icon: "Rootless Pixel Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "✅", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/amirz.rootless.nexuslauncher/latest/", download: "" },
+            { name: "Sentien Launcher", icon: "Sentien Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❗", android: "4.0+", privacy: "", download: "" },
+        ];
 
-// ── Legend data ─────────────────────────────────────────
-const legend = [
-  { sym:"✅", def:"Available / Supported" },
-  { sym:"✖️", def:"Unavailable / Unsupported" },
-  { sym:"❔", def:"Unknown" },
-  { sym:"🧪", def:"Not Tested" },
-  { sym:"🌓", def:"Partially Supported" },
-  { sym:"☠️", def:"Dead / Discontinued" },
-  { sym:"🧹", def:"No Ads" },
-  { sym:"📢", def:"Mild Ads" },
-  { sym:"🚨", def:"Excessive Ads" },
-  { sym:"⬆️⬇️", def:"Vertical Drawer" },
-  { sym:"⬅️➡️", def:"Horizontal Drawer" },
-  { sym:"🔀", def:"Multi-Layout Drawer" },
-  { sym:"🔒", def:"Closed-Sourced" },
-  { sym:"📖", def:"Open-Sourced" },
-  { sym:"🧩", def:"Partially Open-Sourced" },
-];
+        // ── Legend data ─────────────────────────────────────────
+        const legend = [
+            { sym: "✅", def: "Available / Supported" },
+            { sym: "✖️", def: "Unavailable / Unsupported" },
+            { sym: "❔", def: "Unknown" },
+            { sym: "🧪", def: "Not Tested" },
+            { sym: "🌓", def: "Partially Supported" },
+            { sym: "☠️", def: "Dead / Discontinued" },
+            { sym: "🧹", def: "No Ads" },
+            { sym: "📢", def: "Mild Ads" },
+            { sym: "🚨", def: "Excessive Ads" },
+            { sym: "⬆️⬇️", def: "Vertical Drawer" },
+            { sym: "⬅️➡️", def: "Horizontal Drawer" },
+            { sym: "🔀", def: "Multi-Layout Drawer" },
+            { sym: "🔒", def: "Closed-Sourced" },
+            { sym: "📖", def: "Open-Sourced" },
+            { sym: "🧩", def: "Partially Open-Sourced" },
+        ];
 
-// ── Helpers ─────────────────────────────────────────────
-function esc(text) {
-  var tempElement = document.createElement('div');
-  tempElement.appendChild(document.createTextNode(text));
-  return tempElement.innerHTML;
-}
+        // ── Helpers ─────────────────────────────────────────────
+        function esc(text) {
+            var tempElement = document.createElement('div');
+            tempElement.appendChild(document.createTextNode(text));
+            return tempElement.innerHTML;
+        }
 
-function priceBadge(p) {
-  var cls = { Free:'badge-free', Freemium:'badge-freemium', Paid:'badge-paid', Trialware:'badge-trialware' }[p] || 'badge-freemium';
-  return '<span class="badge '+cls+'">'+esc(p)+'</span>';
-}
+        function priceBadge(p) {
+            var cls = { Free: 'badge-free', Freemium: 'badge-freemium', Paid: 'badge-paid', Trialware: 'badge-trialware' }[p] || 'badge-freemium';
+            return '<span class="badge ' + cls + '">' + esc(p) + '</span>';
+        }
 
-function adsLabel(a) {
-  if (a === 'none') return '<span class="ads-none">🧹 No Ads</span>';
-  if (a === 'mild') return '<span class="ads-mild">📢 Mild Ads</span>';
-  if (a === 'excessive') return '<span class="ads-excessive">🚨 Excessive Ads</span>';
-  if (a === 'unknown') return '<span class="ads-unknown">❔</span>';
-  return '<span class="ads-unknown">—</span>';
-}
+        function adsLabel(a) {
+            if (a === 'none') return '<span class="ads-none">🧹 No Ads</span>';
+            if (a === 'mild') return '<span class="ads-mild">📢 Mild Ads</span>';
+            if (a === 'excessive') return '<span class="ads-excessive">🚨 Excessive Ads</span>';
+            if (a === 'unknown') return '<span class="ads-unknown">❔</span>';
+            return '<span class="ads-unknown">—</span>';
+        }
 
-function updatesLabel(u) {
-  if (u === -1) return '<span class="dead">☠️ Dead</span>';
-  if (u === 0) return '—';
-  return '<span class="star">' + '⭐'.repeat(u) + '</span>';
-}
+                function updatesLabel(u) {
+            if (u === -1) return '<span class="dead">☠️ Dead</span>';
+            if (u === 0) return '—';
+            if (typeof u === 'string' && u.indexOf('🪦') !== -1) {
+                return '<span class="star">' + '⭐'.repeat(parseInt(u, 10)) + '</span> <span title="Maintenance-only">🪦</span>';
+            }
+            return '<span class="star">' + '⭐'.repeat(u) + '</span>';
+        }
 
-const SUPPORT_MAP = {
-  '❌':'✖️',
-  '❓':'❔',
-  '❗':'🧪',
-  '➰':'🌓',
-};
+        const SUPPORT_MAP = {
+            '❌': '✖️',
+            '❓': '❔',
+            '❗': '🧪',
+            '➰': '🌓',
+        };
 
-function supportSymbol(sym) {
-  if (!sym) return '—';
-  return esc(SUPPORT_MAP[sym] || sym);
-}
+        function supportSymbol(sym) {
+            if (!sym) return '—';
+            return esc(SUPPORT_MAP[sym] || sym);
+        }
 
-const DRAWER_MAP = {
-  '🔄 Multi-Layout':'🔀 Multi-Layout',
-  '↔️ Horizontal':'⬅️➡️ Horizontal',
-  '↕️ Vertical':'⬆️⬇️ Vertical',
-};
+        const DRAWER_MAP = {
+            '🔄 Multi-Layout': '🔀 Multi-Layout',
+            '↔️ Horizontal': '⬅️➡️ Horizontal',
+            '↕️ Vertical': '⬆️⬇️ Vertical',
+        };
 
-function drawerLabel(drawer) {
-  if (!drawer) return '—';
-  if (DRAWER_MAP[drawer]) return DRAWER_MAP[drawer];
-  return esc(drawer);
-}
+        function drawerLabel(drawer) {
+            if (!drawer) return '—';
+            if (DRAWER_MAP[drawer]) return DRAWER_MAP[drawer];
+            return esc(drawer);
+        }
 
-function codeLabel(c) {
-  if (c === 'open') return '<span class="code-open">📖 Open</span>';
-  if (c === 'closed') return '<span class="code-closed">🔒 Closed</span>';
-  if (c === 'partial') return '<span class="code-partial">🧩 Partial</span>';
-  return '<span class="code-closed">❔</span>';
-}
+        function codeLabel(c) {
+            if (c === 'open') return '<span class="code-open">📖 Open</span>';
+            if (c === 'closed') return '<span class="code-closed">🔒 Closed</span>';
+            if (c === 'partial') return '<span class="code-partial">🧩 Partial</span>';
+            return '<span class="code-closed">❔</span>';
+        }
 
-function iconSrc(icon) {
-  if (!icon) return '';
-  return 'App Icons/' + icon;
-}
+        function iconSrc(icon) {
+            if (!icon) return '';
+            return 'App Icons/' + icon;
+        }
 
-// ── Render ──────────────────────────────────────────────
-var tbody = document.getElementById('tableBody');
-var searchInput = document.getElementById('searchInput');
-var filterPrice = document.getElementById('filterPrice');
-var filterCustom = document.getElementById('filterCustom');
-var filterCode = document.getElementById('filterCode');
-var filterAds = document.getElementById('filterAds');
-var statsText = document.getElementById('statsText');
+        // ── Render ──────────────────────────────────────────────
+        var tbody = document.getElementById('tableBody');
+        var searchInput = document.getElementById('searchInput');
+        var filterPrice = document.getElementById('filterPrice');
+        var filterCustom = document.getElementById('filterCustom');
+        var filterCode = document.getElementById('filterCode');
+        var filterAds = document.getElementById('filterAds');
+        var statsText = document.getElementById('statsText');
 
-var sortCol = '';
-var sortDir = 1; // 1 = asc, -1 = desc
+        var sortCol = '';
+        var sortDir = 1; // 1 = asc, -1 = desc
 
-function getFiltered() {
-  var q = searchInput.value.toLowerCase().trim();
-  var fp = filterPrice.value;
-  var fc = filterCustom.value;
-  var fco = filterCode.value;
-  var fa = filterAds.value;
+        function getFiltered() {
+            var q = searchInput.value.toLowerCase().trim();
+            var fp = filterPrice.value;
+            var fc = filterCustom.value;
+            var fco = filterCode.value;
+            var fa = filterAds.value;
 
-  return launchers.filter(function(l) {
-    if (q && l.name.toLowerCase().indexOf(q) === -1) return false;
-    if (fp && l.price !== fp) return false;
-    if (fc && l.custom !== fc) return false;
-    if (fco && l.code !== fco) return false;
-    if (fa && l.ads !== fa) return false;
-    return true;
-  });
-}
+            return launchers.filter(function (l) {
+                if (q && l.name.toLowerCase().indexOf(q) === -1) return false;
+                if (fp && l.price !== fp) return false;
+                if (fc && l.custom !== fc) return false;
+                if (fco && l.code !== fco) return false;
+                if (fa && l.ads !== fa) return false;
+                return true;
+            });
+        }
 
-var customOrder = { 'God mode':5, 'Advanced':4, 'Intermediate':3, 'Basic':2, 'Less than basic':1 };
+        var customOrder = { 'God mode': 5, 'Advanced': 4, 'Intermediate': 3, 'Basic': 2, 'Less than basic': 1 };
 
-function getSorted(list) {
-  if (!sortCol) return list;
-  var copy = list.slice();
-  copy.sort(function(a, b) {
-    var va, vb;
-    switch (sortCol) {
-      case 'name': va = a.name.toLowerCase(); vb = b.name.toLowerCase(); break;
-      case 'price': va = a.price; vb = b.price; break;
-      case 'ads': va = a.ads || 'zzz'; vb = b.ads || 'zzz'; break;
-      case 'updates': va = a.updates; vb = b.updates; break;
-      case 'custom': va = customOrder[a.custom] || 0; vb = customOrder[b.custom] || 0; break;
-      case 'drawer': va = a.drawer; vb = b.drawer; break;
-      case 'klwp': va = a.klwp; vb = b.klwp; break;
-      case 'widget': va = a.widget; vb = b.widget; break;
-      case 'material': va = a.material; vb = b.material; break;
-      case 'landscape': va = a.landscape; vb = b.landscape; break;
-      case 'code': va = a.code; vb = b.code; break;
-      case 'quickswitch': va = a.quickswitch; vb = b.quickswitch; break;
-      case 'android': va = a.android || 'zzz'; vb = b.android || 'zzz'; break;
-      case 'privacy': va = a.privacy ? 'a' : 'z'; vb = b.privacy ? 'a' : 'z'; break;
-      default: va = ''; vb = '';
-    }
-    if (va < vb) return -1 * sortDir;
-    if (va > vb) return 1 * sortDir;
-    return 0;
-  });
-  return copy;
-}
+        function getSorted(list) {
+            if (!sortCol) return list;
+            var copy = list.slice();
+            copy.sort(function (a, b) {
+                var va, vb;
+                switch (sortCol) {
+                    case 'name': va = a.name.toLowerCase(); vb = b.name.toLowerCase(); break;
+                    case 'price': va = a.price; vb = b.price; break;
+                    case 'ads': va = a.ads || 'zzz'; vb = b.ads || 'zzz'; break;
+                    case 'updates': va = typeof a.updates === 'string' ? parseFloat(a.updates) - 0.1 : a.updates; vb = typeof b.updates === 'string' ? parseFloat(b.updates) - 0.1 : b.updates; break;
+                    case 'custom': va = customOrder[a.custom] || 0; vb = customOrder[b.custom] || 0; break;
+                    case 'drawer': va = a.drawer; vb = b.drawer; break;
+                    case 'klwp': va = a.klwp; vb = b.klwp; break;
+                    case 'widget': va = a.widget; vb = b.widget; break;
+                    case 'material': va = a.material; vb = b.material; break;
+                                        case 'landscape': va = a.landscape; vb = b.landscape; break;
+                    case 'foldable': va = a.foldable; vb = b.foldable; break;
+                    case 'foldable': va = a.foldable; vb = b.foldable; break;
+                    case 'code': va = a.code; vb = b.code; break;
+                    case 'fdroid': va = a.fdroid; vb = b.fdroid; break;
+                    case 'fdroid': va = a.fdroid; vb = b.fdroid; break;
+                    
+                    case 'quickswitch': va = a.quickswitch; vb = b.quickswitch; break;
+                    case 'android': va = a.android || 'zzz'; vb = b.android || 'zzz'; break;
+                    case 'privacy': va = a.privacy ? 'a' : 'z'; vb = b.privacy ? 'a' : 'z'; break;
+                    default: va = ''; vb = '';
+                }
+                if (va < vb) return -1 * sortDir;
+                if (va > vb) return 1 * sortDir;
+                return 0;
+            });
+            return copy;
+        }
 
-function render() {
-  var filtered = getFiltered();
-  var sorted = getSorted(filtered);
+        function render() {
+            var filtered = getFiltered();
+            var sorted = getSorted(filtered);
 
-  statsText.textContent = 'Showing ' + sorted.length + ' of ' + launchers.length + ' launchers';
+            statsText.textContent = 'Showing ' + sorted.length + ' of ' + launchers.length + ' launchers';
 
-  if (sorted.length === 0) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="15">No launchers match your filters. Try adjusting your search or filters.</td></tr>';
-    return;
-  }
+            if (sorted.length === 0) {
+                tbody.innerHTML = '<tr class="empty-row"><td colspan="15">No launchers match your filters. Try adjusting your search or filters.</td></tr>';
+                return;
+            }
 
-  var html = '';
-  for (var i = 0; i < sorted.length; i++) {
-    var l = sorted[i];
-    var iconTag = l.icon
-      ? '<img src="' + esc(iconSrc(l.icon)) + '" alt="" loading="lazy">'
-      : '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'28\' height=\'28\' fill=\'%232a2d38\' viewBox=\'0 0 28 28\'%3E%3Crect width=\'28\' height=\'28\' rx=\'7\'/%3E%3Ctext x=\'14\' y=\'18\' text-anchor=\'middle\' font-size=\'14\' fill=\'%236c8cff\'%3E' + esc(l.name.charAt(0)) + '%3C/text%3E%3C/svg%3E" alt="">';
+            var html = '';
+            for (var i = 0; i < sorted.length; i++) {
+                var l = sorted[i];
+                var iconTag = l.icon
+                    ? '<img src="' + esc(iconSrc(l.icon)) + '" alt="" loading="lazy">'
+                    : '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'28\' height=\'28\' fill=\'%232a2d38\' viewBox=\'0 0 28 28\'%3E%3Crect width=\'28\' height=\'28\' rx=\'7\'/%3E%3Ctext x=\'14\' y=\'18\' text-anchor=\'middle\' font-size=\'14\' fill=\'%236c8cff\'%3E' + esc(l.name.charAt(0)) + '%3C/text%3E%3C/svg%3E" alt="">';
 
-    var privacyCell = l.privacy
-      ? '<a class="privacy-link" href="' + esc(l.privacy) + '" target="_blank" rel="noopener">Exodus ↗</a>'
-      : '<span style="color:var(--text2)">N/A</span>';
+                var privacyCell = l.privacy
+                    ? '<a class="privacy-link" href="' + esc(l.privacy) + '" target="_blank" rel="noopener">Exodus ↗</a>'
+                    : '<span style="color:var(--text2)">N/A</span>';
 
-    var downloadCell = l.download
-      ? '<a class="link-btn" href="' + esc(l.download) + '" target="_blank" rel="noopener">Get ↗</a>'
-      : '<span style="color:var(--text2)">—</span>';
+                var downloadCell = l.download
+                    ? '<a class="link-btn" href="' + esc(l.download) + '" target="_blank" rel="noopener">Get ↗</a>'
+                    : '<span style="color:var(--text2)">—</span>';
 
-    html += '<tr>'
-      + '<td><div class="name-cell">' + iconTag + '<span>' + esc(l.name) + '</span></div></td>'
-      + '<td>' + priceBadge(l.price) + '</td>'
-      + '<td>' + adsLabel(l.ads) + '</td>'
-      + '<td>' + updatesLabel(l.updates) + '</td>'
-      + '<td>' + esc(l.custom) + '</td>'
-      + '<td>' + drawerLabel(l.drawer) + '</td>'
-      + '<td>' + supportSymbol(l.klwp) + '</td>'
-      + '<td>' + supportSymbol(l.widget) + '</td>'
-      + '<td>' + supportSymbol(l.material) + '</td>'
-      + '<td>' + supportSymbol(l.landscape) + '</td>'
-      + '<td>' + codeLabel(l.code) + '</td>'
-      + '<td>' + supportSymbol(l.quickswitch) + '</td>'
-      + '<td>' + esc(l.android) + '</td>'
-      + '<td>' + privacyCell + '</td>'
-      + '<td>' + downloadCell + '</td>'
-      + '</tr>';
-  }
-  tbody.innerHTML = html;
-}
+                html += '<tr>'
+                    + '<td><div class="name-cell">' + iconTag + '<span>' + esc(l.name) + '</span></div></td>'
+                    + '<td>' + priceBadge(l.price) + '</td>'
+                    + '<td>' + adsLabel(l.ads) + '</td>'
+                    + '<td>' + updatesLabel(l.updates) + '</td>'
+                    + '<td>' + esc(l.custom) + '</td>'
+                    + '<td>' + drawerLabel(l.drawer) + '</td>'
+                    + '<td>' + supportSymbol(l.klwp) + '</td>'
+                    + '<td>' + supportSymbol(l.widget) + '</td>'
+                    + '<td>' + supportSymbol(l.material) + '</td>'
+                                        + '<td>' + supportSymbol(l.landscape) + '</td>'
+                    + '<td>' + supportSymbol(l.foldable) + '</td>'
+                    + '<td>' + codeLabel(l.code) + '</td>'
+                    + '<td>' + supportSymbol(l.fdroid) + '</td>'
+                    + '<td>' + supportSymbol(l.quickswitch) + '</td>'
+                    + '<td>' + esc(l.android) + '</td>'
+                    + '<td>' + privacyCell + '</td>'
+                    + '<td>' + downloadCell + '</td>'
+                    + '</tr>';
+            }
+            tbody.innerHTML = html;
+        }
 
-// ── Events ──────────────────────────────────────────────
-searchInput.addEventListener('input', render);
-filterPrice.addEventListener('change', render);
-filterCustom.addEventListener('change', render);
-filterCode.addEventListener('change', render);
-filterAds.addEventListener('change', render);
+        // ── Events ──────────────────────────────────────────────
+        searchInput.addEventListener('input', render);
+        filterPrice.addEventListener('change', render);
+        filterCustom.addEventListener('change', render);
+        filterCode.addEventListener('change', render);
+        filterAds.addEventListener('change', render);
 
-// sorting
-document.querySelectorAll('thead th[data-col]').forEach(function(th) {
-  th.addEventListener('click', function() {
-    var col = th.getAttribute('data-col');
-    if (sortCol === col) {
-      sortDir *= -1;
-    } else {
-      sortCol = col;
-      sortDir = 1;
-    }
-    // update arrows
-    document.querySelectorAll('thead th').forEach(function(t) { t.classList.remove('sorted'); });
-    th.classList.add('sorted');
-    th.querySelector('.sort-arrow').textContent = sortDir === 1 ? '▲' : '▼';
-    render();
-  });
-});
+        // sorting
+        document.querySelectorAll('thead th[data-col]').forEach(function (th) {
+            th.addEventListener('click', function () {
+                var col = th.getAttribute('data-col');
+                if (sortCol === col) {
+                    sortDir *= -1;
+                } else {
+                    sortCol = col;
+                    sortDir = 1;
+                }
+                // update arrows
+                document.querySelectorAll('thead th').forEach(function (t) { t.classList.remove('sorted'); });
+                th.classList.add('sorted');
+                th.querySelector('.sort-arrow').textContent = sortDir === 1 ? '▲' : '▼';
+                render();
+            });
+        });
 
-// back to top
-var btn = document.getElementById('backToTop');
-window.addEventListener('scroll', function() {
-  btn.classList.toggle('visible', window.scrollY > 400);
-});
-btn.addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+        // back to top
+        var btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function () {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        });
+        btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-// ── Legend ───────────────────────────────────────────────
-var legendGrid = document.getElementById('legendGrid');
-var legendHtml = '';
-for (var i = 0; i < legend.length; i++) {
-  legendHtml += '<div class="legend-item"><span class="sym">' + legend[i].sym + '</span>' + esc(legend[i].def) + '</div>';
-}
-legendGrid.innerHTML = legendHtml;
+        // ── Legend ───────────────────────────────────────────────
+        var legendGrid = document.getElementById('legendGrid');
+        var legendHtml = '';
+        for (var i = 0; i < legend.length; i++) {
+            legendHtml += '<div class="legend-item"><span class="sym">' + legend[i].sym + '</span>' + esc(legend[i].def) + '</div>';
+        }
+        legendGrid.innerHTML = legendHtml;
 
-// ── Initial render ──────────────────────────────────────
-render();
-</script>
+        // ── Initial render ──────────────────────────────────────
+        render();
+    </script>
 </body>
+
 </html>
