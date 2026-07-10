@@ -174,18 +174,6 @@ These launchers are dead, discontinued, or abandoned, and are no longer actively
 - Add Lawnchair 16 row once it reaches a usable beta stage
 
 
-## Star History
-
-<a href="https://www.star-history.com/?repos=diluteoxygen%2FAndroid-Launcher-Comparison-Table&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=diluteoxygen/Android-Launcher-Comparison-Table&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=diluteoxygen/Android-Launcher-Comparison-Table&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=diluteoxygen/Android-Launcher-Comparison-Table&type=date&legend=top-left" />
- </picture>
-</a>
-
-
-
 ## Acknowledgements
 
 - [Grabster Studios](https://x.com/grabsterstudios)
