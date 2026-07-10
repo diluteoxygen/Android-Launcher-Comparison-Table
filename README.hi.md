@@ -49,9 +49,9 @@
 
 ## तुलना
 
+<!-- ACTIVE_TABLE:START -->
 | **नाम** | **कीमत** | **विज्ञापन/ब्लोट** | **अपडेट आवृत्ति** | **अनुकूलनशीलता** | **ऐप ड्रॉअर शैली** | **KLWP सहायता** | **विजेट सहायता** | **Material You** | **लैंडस्केप सहायता** | **फोल्डेबल/टैबलेट** | **कोड उपलब्धता** | **F-Droid** | **QuickSwitch** | **एंड्रॉइड संस्करण** | **गोपनीयता** | **डाउनलोड** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ACTIVE_TABLE:START -->
 | Action Launcher | फ़्रीमियम | 🧹 | ⭐⭐ | उन्नत | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/) | [Link](https://play.google.com/store/apps/details?id=com.actionlauncher.playstore) |
 | AIO Launcher | फ़्रीमियम | 🧹 | ⭐⭐⭐⭐ | उन्नत | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher) |
 | Ap15 Launcher | फ़्रीमियम | 🧹 | ⭐⭐ | बुनियादी से कम | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest) | [Link](https://play.google.com/store/apps/details?id=com.aurhe.ap15) |
@@ -108,9 +108,9 @@
 
 ये लॉन्चर मृत, बंद, या परित्यक्त हैं, और अब सक्रिय रूप से रखरखाव नहीं किए जा रहे हैं।
 
+<!-- ARCHIVED_TABLE:START -->
 | **नाम** | **कीमत** | **विज्ञापन/ब्लोट** | **अपडेट आवृत्ति** | **अनुकूलनशीलता** | **ऐप ड्रॉअर शैली** | **KLWP सहायता** | **विजेट सहायता** | **Material You** | **लैंडस्केप सहायता** | **फोल्डेबल/टैबलेट** | **कोड उपलब्धता** | **F-Droid** | **QuickSwitch** | **एंड्रॉइड संस्करण** | **गोपनीयता** | **डाउनलोड** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ARCHIVED_TABLE:START -->
 | ADW Launcher 2 | फ़्रीमियम | ❔ | ☠️ | मध्यवर्ती | ⬆️⬇️ | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 2.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.adw.launcher) |
 | Alphabet Launcher | मुफ़्त | ❔ | ☠️ | बुनियादी से कम | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | — |
 | ASAP Launcher | फ़्रीमियम | ❔ | ☠️ | मध्यवर्ती | ⬆️⬇️ | 🌓 | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest) | — |

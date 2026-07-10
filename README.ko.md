@@ -49,9 +49,9 @@
 
 ## 비교표
 
+<!-- ACTIVE_TABLE:START -->
 | **이름** | **가격** | **광고/블로트** | **업데이트 빈도** | **커스터마이징** | **앱 서랍 스타일** | **KLWP 지원** | **위젯 지원** | **Material You** | **가로모드 지원** | **폴더블/태블릿** | **코드 공개** | **F-Droid** | **QuickSwitch** | **안드로이드 버전** | **개인정보** | **다운로드** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ACTIVE_TABLE:START -->
 | Action Launcher | Freemium | 🧹 | ⭐⭐ | 고급 | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/) | [Link](https://play.google.com/store/apps/details?id=com.actionlauncher.playstore) |
 | AIO Launcher | Freemium | 🧹 | ⭐⭐⭐⭐ | 고급 | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher) |
 | Ap15 Launcher | Freemium | 🧹 | ⭐⭐ | 기본 이하 | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest) | [Link](https://play.google.com/store/apps/details?id=com.aurhe.ap15) |
@@ -108,9 +108,9 @@
 
 아래 런처들은 중단되었거나 더 이상 개발되지 않는, 유지보수가 이루어지지 않는 런처들입니다.
 
+<!-- ARCHIVED_TABLE:START -->
 | **이름** | **가격** | **광고/블로트** | **업데이트 빈도** | **커스터마이징** | **앱 서랍 스타일** | **KLWP 지원** | **위젯 지원** | **Material You** | **가로모드 지원** | **폴더블/태블릿** | **코드 공개** | **F-Droid** | **QuickSwitch** | **안드로이드 버전** | **개인정보** | **다운로드** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ARCHIVED_TABLE:START -->
 | ADW Launcher 2 | Freemium | ❔ | ☠️ | 중급 | ⬆️⬇️ | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 2.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.adw.launcher) |
 | Alphabet Launcher | 무료 | ❔ | ☠️ | 기본 이하 | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | — |
 | ASAP Launcher | Freemium | ❔ | ☠️ | 중급 | ⬆️⬇️ | 🌓 | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest) | — |

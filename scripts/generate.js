@@ -212,9 +212,13 @@ function makeReadmeRow(l, priceMap, customMap, drawerMap) {
   return '| ' + cols.join(' | ') + ' |';
 }
 
-function makeReadmeTable(launchers, priceMap, customMap, drawerMap) {
+function makeReadmeTable(launchers, priceMap, customMap, drawerMap, headerRow, separatorRow) {
   const rows = launchers.map(l => makeReadmeRow(l, priceMap, customMap, drawerMap));
-  return rows.join('\n');
+  const parts = [];
+  if (headerRow)    parts.push(headerRow);
+  if (separatorRow) parts.push(separatorRow);
+  parts.push(...rows);
+  return parts.join('\n');
 }
 
 // ────────────────────────────────────────────────────────────────────
@@ -277,15 +281,15 @@ function patchBetweenMarkers(content, startMarker, endMarker, replacement) {
 // Generate READMEs
 // ────────────────────────────────────────────────────────────────────
 
-function generateReadme(filename, priceMap, customMap, drawerMap) {
+function generateReadme(filename, priceMap, customMap, drawerMap, activeHeader, activeHeaderSep, archivedHeader, archivedHeaderSep) {
   const filepath = path.join(ROOT, filename);
   let content = fs.readFileSync(filepath, 'utf8');
 
   const active   = DATA.filter(l => !l.archived);
   const archived = DATA.filter(l => l.archived);
 
-  const activeTable   = makeReadmeTable(active, priceMap, customMap, drawerMap);
-  const archivedTable = makeReadmeTable(archived, priceMap, customMap, drawerMap);
+  const activeTable   = makeReadmeTable(active,   priceMap, customMap, drawerMap, activeHeader,   activeHeaderSep);
+  const archivedTable = makeReadmeTable(archived, priceMap, customMap, drawerMap, archivedHeader, archivedHeaderSep);
 
   content = patchBetweenMarkers(
     content,
@@ -332,10 +336,39 @@ function generateHtml() {
 // ────────────────────────────────────────────────────────────────────
 
 try {
-  generateReadme('README.md',    PRICE_MAP_README, CUSTOM_MAP_README, DRAWER_MAP_README);
-  generateReadme('README.es.md', PRICE_MAP_ES,     CUSTOM_MAP_ES,     DRAWER_MAP_ES);
-  generateReadme('README.ko.md', PRICE_MAP_KO,     CUSTOM_MAP_KO,     DRAWER_MAP_KO);
-  generateReadme('README.hi.md', PRICE_MAP_HI,     CUSTOM_MAP_HI,     DRAWER_MAP_HI);
+  const SEP = '|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|';
+
+  generateReadme('README.md',
+    PRICE_MAP_README, CUSTOM_MAP_README, DRAWER_MAP_README,
+    '| **Name** | **Price** | **Ads/Bloat** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP Support** | **Widget Support** | **Material You** | **Landscape Support** | **Foldable/Tablet** | **Code Availability** | **F-Droid** | **QuickSwitch** | **Android Version** | **Privacy** | **Download** |',
+    SEP,
+    '| **Name** | **Price** | **Ads/Bloat** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP Support** | **Widget Support** | **Material You** | **Landscape Support** | **Foldable/Tablet** | **Code Availability** | **F-Droid** | **QuickSwitch** | **Android Version** | **Privacy** | **Download** |',
+    SEP
+  );
+
+  generateReadme('README.es.md',
+    PRICE_MAP_ES, CUSTOM_MAP_ES, DRAWER_MAP_ES,
+    '| **Nombre** | **Precio** | **Anuncios/Bloat** | **Frec. de Actualización** | **Personalización** | **Estilo del Cajón** | **Soporte KLWP** | **Soporte de Widgets** | **Material You** | **Soporte Horizontal** | **Plegables/Tablets** | **Disp. del Código** | **F-Droid** | **QuickSwitch** | **Versión de Android** | **Privacidad** | **Descarga** |',
+    SEP,
+    '| **Nombre** | **Precio** | **Anuncios/Bloat** | **Frec. de Actualización** | **Personalización** | **Estilo del Cajón** | **Soporte KLWP** | **Soporte de Widgets** | **Material You** | **Soporte Horizontal** | **Plegables/Tablets** | **Disp. del Código** | **F-Droid** | **QuickSwitch** | **Versión de Android** | **Privacidad** | **Descarga** |',
+    SEP
+  );
+
+  generateReadme('README.ko.md',
+    PRICE_MAP_KO, CUSTOM_MAP_KO, DRAWER_MAP_KO,
+    '| **이름** | **가격** | **광고/블로트** | **업데이트 빈도** | **커스터마이징** | **앱 서랍 스타일** | **KLWP 지원** | **위젯 지원** | **Material You** | **가로모드 지원** | **폴더블/태블릿** | **코드 공개** | **F-Droid** | **QuickSwitch** | **안드로이드 버전** | **개인정보** | **다운로드** |',
+    SEP,
+    '| **이름** | **가격** | **광고/블로트** | **업데이트 빈도** | **커스터마이징** | **앱 서랍 스타일** | **KLWP 지원** | **위젯 지원** | **Material You** | **가로모드 지원** | **폴더블/태블릿** | **코드 공개** | **F-Droid** | **QuickSwitch** | **안드로이드 버전** | **개인정보** | **다운로드** |',
+    SEP
+  );
+
+  generateReadme('README.hi.md',
+    PRICE_MAP_HI, CUSTOM_MAP_HI, DRAWER_MAP_HI,
+    '| **नाम** | **कीमत** | **विज्ञापन/ब्लोट** | **अपडेट आवृत्ति** | **अनुकूलनशीलता** | **ऐप ड्रॉअर शैली** | **KLWP सहायता** | **विजेट सहायता** | **Material You** | **लैंडस्केप सहायता** | **फोल्डेबल/टैबलेट** | **कोड उपलब्धता** | **F-Droid** | **QuickSwitch** | **एंड्रॉइड संस्करण** | **गोपनीयता** | **डाउनलोड** |',
+    SEP,
+    '| **नाम** | **कीमत** | **विज्ञापन/ब्लोट** | **अपडेट आवृत्ति** | **अनुकूलनशीलता** | **ऐप ड्रॉअर शैली** | **KLWP सहायता** | **विजेट सहायता** | **Material You** | **लैंडस्केप सहायता** | **फोल्डेबल/टैबलेट** | **कोड उपलब्धता** | **F-Droid** | **QuickSwitch** | **एंड्रॉइड संस्करण** | **गोपनीयता** | **डाउनलोड** |',
+    SEP
+  );
   generateHtml();
   console.log('\n🎉 All files generated successfully from launchers.json');
 } catch (err) {

@@ -49,9 +49,9 @@ We mark launchers on the following properties:
 
 ## Comparison
 
+<!-- ACTIVE_TABLE:START -->
 | **Name** | **Price** | **Ads/Bloat** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP Support** | **Widget Support** | **Material You** | **Landscape Support** | **Foldable/Tablet** | **Code Availability** | **F-Droid** | **QuickSwitch** | **Android Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ACTIVE_TABLE:START -->
 | Action Launcher | Freemium | 🧹 | ⭐⭐ | Advanced | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/) | [Link](https://play.google.com/store/apps/details?id=com.actionlauncher.playstore) |
 | AIO Launcher | Freemium | 🧹 | ⭐⭐⭐⭐ | Advanced | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher) |
 | Ap15 Launcher | Freemium | 🧹 | ⭐⭐ | Less than basic | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest) | [Link](https://play.google.com/store/apps/details?id=com.aurhe.ap15) |
@@ -108,9 +108,9 @@ We mark launchers on the following properties:
 
 These launchers are dead, discontinued, or abandoned, and are no longer actively maintained.
 
+<!-- ARCHIVED_TABLE:START -->
 | **Name** | **Price** | **Ads/Bloat** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP Support** | **Widget Support** | **Material You** | **Landscape Support** | **Foldable/Tablet** | **Code Availability** | **F-Droid** | **QuickSwitch** | **Android Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ARCHIVED_TABLE:START -->
 | ADW Launcher 2 | Freemium | ❔ | ☠️ | Intermediate | ⬆️⬇️ | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 2.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.adw.launcher) |
 | Alphabet Launcher | Free | ❔ | ☠️ | Less than basic | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | — |
 | ASAP Launcher | Freemium | ❔ | ☠️ | Intermediate | ⬆️⬇️ | 🌓 | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest) | — |

@@ -49,9 +49,9 @@ Evaluamos los launchers según los siguientes aspectos:
 
 ## Comparación
 
+<!-- ACTIVE_TABLE:START -->
 | **Nombre** | **Precio** | **Anuncios/Bloat** | **Frec. de Actualización** | **Personalización** | **Estilo del Cajón** | **Soporte KLWP** | **Soporte de Widgets** | **Material You** | **Soporte Horizontal** | **Plegables/Tablets** | **Disp. del Código** | **F-Droid** | **QuickSwitch** | **Versión de Android** | **Privacidad** | **Descarga** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ACTIVE_TABLE:START -->
 | Action Launcher | Freemium | 🧹 | ⭐⭐ | Avanzada | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/) | [Link](https://play.google.com/store/apps/details?id=com.actionlauncher.playstore) |
 | AIO Launcher | Freemium | 🧹 | ⭐⭐⭐⭐ | Avanzada | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher) |
 | Ap15 Launcher | Freemium | 🧹 | ⭐⭐ | Menos que básica | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest) | [Link](https://play.google.com/store/apps/details?id=com.aurhe.ap15) |
@@ -108,9 +108,9 @@ Evaluamos los launchers según los siguientes aspectos:
 
 Estos launchers están muertos, descontinuados o abandonados, y ya no reciben mantenimiento activo.
 
+<!-- ARCHIVED_TABLE:START -->
 | **Nombre** | **Precio** | **Anuncios/Bloat** | **Frec. de Actualización** | **Personalización** | **Estilo del Cajón** | **Soporte KLWP** | **Soporte de Widgets** | **Material You** | **Soporte Horizontal** | **Plegables/Tablets** | **Disp. del Código** | **F-Droid** | **QuickSwitch** | **Versión de Android** | **Privacidad** | **Descarga** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-<!-- ARCHIVED_TABLE:START -->
 | ADW Launcher 2 | Freemium | ❔ | ☠️ | Intermedia | ⬆️⬇️ | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 2.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.adw.launcher) |
 | Alphabet Launcher | Gratis | ❔ | ☠️ | Menos que básica | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | — |
 | ASAP Launcher | Freemium | ❔ | ☠️ | Intermedia | ⬆️⬇️ | 🌓 | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest) | — |
