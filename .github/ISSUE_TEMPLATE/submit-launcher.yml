@@ -1,0 +1,137 @@
+name: Submit a Launcher
+description: Suggest a new launcher to add to the comparison table
+title: "[Launcher] "
+labels: ["new-launcher"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a launcher! Please fill in as many fields as you can.
+        If you're unsure about a value, leave it blank or pick the closest option.
+
+  - type: input
+    id: launcher-name
+    attributes:
+      label: Launcher Name
+      description: The display name of the launcher.
+      placeholder: "e.g. Nova Launcher"
+    validations:
+      required: true
+
+  - type: input
+    id: download-link
+    attributes:
+      label: Download Link
+      description: URL to download the launcher (Play Store, F-Droid, GitHub, etc.).
+      placeholder: "https://play.google.com/store/apps/details?id=..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: price
+    attributes:
+      label: Price
+      options:
+        - Free
+        - Freemium
+        - Paid
+        - Trialware
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ads
+    attributes:
+      label: Ads / Bloatware
+      options:
+        - None
+        - Mild
+        - Excessive
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: update-frequency
+    attributes:
+      label: Update Frequency
+      description: How actively is the launcher maintained?
+      options:
+        - "⭐ (1 star)"
+        - "⭐⭐ (2 stars)"
+        - "⭐⭐⭐ (3 stars)"
+        - "⭐⭐⭐⭐ (4 stars)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: customisability
+    attributes:
+      label: Customisability
+      options:
+        - God mode
+        - Advanced
+        - Intermediate
+        - Basic
+        - Less than basic
+    validations:
+      required: true
+
+  - type: dropdown
+    id: app-drawer-style
+    attributes:
+      label: App Drawer Style
+      options:
+        - Vertical
+        - Horizontal
+        - Multi-Layout
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source-code
+    attributes:
+      label: Source Code
+      options:
+        - Open
+        - Closed
+        - Partial
+    validations:
+      required: true
+
+  - type: dropdown
+    id: fdroid
+    attributes:
+      label: F-Droid Available
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: has-icon
+    attributes:
+      label: App Icon
+      options:
+        - label: I have an app icon to provide
+          required: false
+
+  - type: input
+    id: privacy-url
+    attributes:
+      label: Privacy Report URL
+      description: Link to an Exodus Privacy report, if available.
+      placeholder: "https://reports.exodus-privacy.eu.org/en/reports/..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes
+      description: Any extra info — KLWP support, Material You, foldable support, etc.
+      placeholder: "e.g. Supports Material You theming, landscape mode works well..."
+    validations:
+      required: false

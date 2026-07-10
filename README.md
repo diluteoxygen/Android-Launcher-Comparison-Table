@@ -1,3 +1,5 @@
+🌐 **Language / भाषा / 언어 / Idioma:** [English](README.md) | [हिन्दी](README.hi.md) | [한국어](README.ko.md) | [Español](README.es.md)
+
 # [The Definitive Android Launcher Comparison Table](https://diluteoxygen.github.io/Android-Launcher-Comparison-Table/)
 
 ![Last Updated: June 2026](https://img.shields.io/badge/Last%20Updated-June%202026-brightgreen)
@@ -49,12 +51,13 @@ We mark launchers on the following properties:
 
 | **Name** | **Price** | **Ads/Bloat** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP Support** | **Widget Support** | **Material You** | **Landscape Support** | **Foldable/Tablet** | **Code Availability** | **F-Droid** | **QuickSwitch** | **Android Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+<!-- ACTIVE_TABLE:START -->
 | Action Launcher | Freemium | 🧹 | ⭐⭐ | Advanced | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/) | [Link](https://play.google.com/store/apps/details?id=com.actionlauncher.playstore) |
 | AIO Launcher | Freemium | 🧹 | ⭐⭐⭐⭐ | Advanced | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher) |
 | Ap15 Launcher | Freemium | 🧹 | ⭐⭐ | Less than basic | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest) | [Link](https://play.google.com/store/apps/details?id=com.aurhe.ap15) |
 | Apex Launcher | Trialware | 📢 | ⭐ | Advanced | 🔀 | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.anddoes.launcher/latest/) | — |
 | Apus Launcher | Freemium | 🚨 | ⭐⭐ | Intermediate | 🔀 | 🌓 | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.apusapps.launcher/latest/) | — |
-| Before Launcher | Freemium | 🧹 | ⭐⭐⭐ | Intermediate | ⬆️⬇️ | ❔ | ✅ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | ❔ | [Link](https://play.google.com/store/apps/details?id=com.beforesoft.launcher) |
+| Before Launcher | Freemium | 🧹 | ⭐⭐⭐ | Intermediate | ⬆️⬇️ | ❔ | ✅ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | [Link](https://play.google.com/store/apps/details?id=com.beforesoft.launcher) |
 | Bliss Launcher | Free | 🧹 | ⭐⭐ | Intermediate | ⬆️⬇️ | ✅ | ✅ | ✅ | ❔ | ✅ | 📖 | ✅ | 🧪 | 9.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/foundation.e.blisslauncher/latest/) | — |
 | Bridge Launcher | Free | 🧹 | ⭐⭐ | Advanced | Other | ✅ | ✖️ | ✖️ | ❔ | ✅ | 📖 | ✖️ | ✖️ | 8.0+ | N/A | [Link](https://github.com/bridgelauncher) |
 | Discreet Launcher | Free | 🧹 | ⭐⭐⭐ | Basic | 🔀 | ✖️ | ✖️ | ✖️ | ✖️ | ❔ | 📖 | ✅ | 🧪 | 5.0+ | N/A | [Link](https://github.com/falzonv/discreet-launcher/releases) |
@@ -73,7 +76,7 @@ We mark launchers on the following properties:
 | Lynx Launcher | Freemium | 🧹 | ⭐⭐ | Advanced | 🔀 | ✅ | ✅ | ✅ | ❔ | ✖️ | 🔒 | ✖️ | 🧪 | 12.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.n277.lynxlauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.n277.lynxlauncher) |
 | Microsoft Launcher | Free | 📢 | ⭐⭐⭐⭐ | Advanced | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 7.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.microsoft.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.microsoft.launcher) |
 | Minimal Launcher | Free | 🧹 | ⭐⭐ | Less than basic | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | 📖 | ✅ | 🧪 | 4.0+ | N/A | — |
-| minimalist phone® | Freemium | 🧹 | ⭐⭐⭐ | Basic | ⬆️⬇️ | ✖️ | ✖️ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | ❔ | [Link](https://play.google.com/store/apps/details?id=com.qqlabs.minimalistlauncher) |
+| minimalist phone® | Freemium | 🧹 | ⭐⭐⭐ | Basic | ⬆️⬇️ | ✖️ | ✖️ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | [Link](https://play.google.com/store/apps/details?id=com.qqlabs.minimalistlauncher) |
 | Mint Launcher | Free | 📢 | ⭐⭐ | Intermediate | ⬆️⬇️ | 🌓 | ✅ | ✖️ | ✖️ | ✖️ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.mi.android.go.globallauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.mi.android.go.globallauncher) |
 | Neo Launcher | Free | 🧹 | ⭐ | Advanced | ⬆️⬇️ | ✅ | ✅ | ✅ | ✅ | ✅ | 📖 | ✅ | ✖️ | 8.0+ | N/A | [Link](https://github.com/NeoApplications/Neo-Launcher/releases) |
 | Neo Launcher (Sci-Fi) | Freemium | 🚨 | ⭐⭐⭐⭐ | Intermediate | Other | ✖️ | ✅ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | [Link](https://play.google.com/store/apps/details?id=appmania.launcher.scifi) |
@@ -96,6 +99,7 @@ We mark launchers on the following properties:
 | XOS Launcher | Freemium | 📢 | ⭐⭐⭐ | Intermediate | ⬆️⬇️ | 🌓 | ✅ | ✖️ | 🌓 | 🌓 | 🔒 | ✖️ | 🧪 | 7.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.transsion.XOSLauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.transsion.XOSLauncher) |
 | Yasan Launcher | Free | 🧹 | ⭐⭐ | Intermediate | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ❔ | 🔒 | ✖️ | 🧪 | 10.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/yasan.space.mnml.ai.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=yasan.space.mnml.ai.launcher) |
 | µLauncher | Free | 🧹 | ⭐⭐⭐⭐ | Less than basic | Other | ✖️ | ✅ | ✅ | ✅ | ❔ | 📖 | ✅ | 🧪 | 5.0+ | N/A | [Link](https://github.com/jrpie/launcher/releases) |
+<!-- ACTIVE_TABLE:END -->
 
 ## Archived Launchers
 
@@ -106,6 +110,7 @@ These launchers are dead, discontinued, or abandoned, and are no longer actively
 
 | **Name** | **Price** | **Ads/Bloat** | **Update Frequency** | **Customisability** | **App Drawer Style** | **KLWP Support** | **Widget Support** | **Material You** | **Landscape Support** | **Foldable/Tablet** | **Code Availability** | **F-Droid** | **QuickSwitch** | **Android Version** | **Privacy** | **Download** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+<!-- ARCHIVED_TABLE:START -->
 | ADW Launcher 2 | Freemium | ❔ | ☠️ | Intermediate | ⬆️⬇️ | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 2.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.adw.launcher) |
 | Alphabet Launcher | Free | ❔ | ☠️ | Less than basic | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | — |
 | ASAP Launcher | Freemium | ❔ | ☠️ | Intermediate | ⬆️⬇️ | 🌓 | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest) | — |
@@ -124,6 +129,7 @@ These launchers are dead, discontinued, or abandoned, and are no longer actively
 | Pear Launcher | Freemium | 🧹 | ☠️ | Intermediate | ⬆️⬇️ | 🌓 | ✅ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.pearlauncher.pearlauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.pearlauncher.pearlauncher) |
 | Rootless Pixel Launcher | Free | 🧹 | ☠️ | Basic | ⬆️⬇️ | 🌓 | ✅ | ✖️ | ✅ | ✅ | 📖 | ✅ | ✅ | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/amirz.rootless.nexuslauncher/latest/) | — |
 | Sentien Launcher | Free | 🧹 | ☠️ | Basic | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 📖 | ✅ | 🧪 | 4.0+ | N/A | — |
+<!-- ARCHIVED_TABLE:END -->
 
 </details>
 

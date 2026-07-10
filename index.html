@@ -480,6 +480,236 @@
             background: var(--accent-dim);
             color: #fff;
         }
+
+        /* ── Copy filter link button ───────────────────────── */
+        .copy-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: .4rem .75rem;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            font-size: .78rem;
+            cursor: pointer;
+            transition: border-color .2s, color .2s, background .2s;
+            white-space: nowrap;
+        }
+
+        .copy-link-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .copy-link-btn.copied {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(52, 211, 153, .08);
+        }
+
+        /* ── Compare mode ─────────────────────────────────── */
+        .compare-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: .4rem .75rem;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            font-size: .78rem;
+            cursor: pointer;
+            transition: border-color .2s, color .2s, background .2s;
+            white-space: nowrap;
+        }
+
+        .compare-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .compare-toggle.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(108, 140, 255, .10);
+        }
+
+        /* checkbox column */
+        .cmp-check-cell {
+            width: 36px;
+            text-align: center;
+        }
+
+        .cmp-check-cell input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        th.cmp-check-cell {
+            padding: .7rem .4rem;
+        }
+
+        /* floating compare button */
+        .compare-fab {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            padding: .65rem 1.5rem;
+            border-radius: 28px;
+            background: var(--accent);
+            color: #fff;
+            font-size: .88rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(108, 140, 255, .4);
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s, transform .25s;
+        }
+
+        .compare-fab.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .compare-fab:hover {
+            background: #5a7af0;
+        }
+
+        /* ── Compare Modal ─────────────────────────────────── */
+        .compare-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, .6);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s;
+        }
+
+        .compare-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .compare-modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            max-width: 92vw;
+            max-height: 85vh;
+            overflow: auto;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, .5);
+            padding: 1.5rem;
+            position: relative;
+            min-width: 400px;
+        }
+
+        .compare-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .compare-modal-header h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+
+        .compare-close-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .15s, color .15s;
+        }
+
+        .compare-close-btn:hover {
+            background: var(--accent-dim);
+            color: #fff;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: .84rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            padding: .55rem .7rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .compare-table thead th {
+            background: var(--surface2);
+            color: var(--text2);
+            font-weight: 600;
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            position: sticky;
+            top: 0;
+        }
+
+        .compare-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compare-table .prop-label {
+            color: var(--text2);
+            font-weight: 600;
+            background: var(--surface2);
+            min-width: 120px;
+        }
+
+        .compare-table td.diff {
+            background: rgba(108, 140, 255, .07);
+        }
+
+        .compare-table .cmp-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .compare-modal {
+                min-width: auto;
+                width: 96vw;
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -536,6 +766,8 @@
         </select>
 
         <span class="stats" id="statsText">Showing all launchers</span>
+        <button class="copy-link-btn" id="copyLinkBtn" title="Copy filter link">🔗 Copy Link</button>
+        <button class="compare-toggle" id="compareToggle" title="Toggle compare mode">⚖️ Compare</button>
     </div>
 
     <!-- Table -->
@@ -588,8 +820,23 @@
         </svg>
     </button>
 
+    <!-- Compare FAB -->
+    <button class="compare-fab" id="compareFab">Compare Selected (0)</button>
+
+    <!-- Compare Modal -->
+    <div class="compare-overlay" id="compareOverlay">
+        <div class="compare-modal" id="compareModal">
+            <div class="compare-modal-header">
+                <h2>⚖️ Side-by-Side Comparison</h2>
+                <button class="compare-close-btn" id="compareCloseBtn" aria-label="Close">✕</button>
+            </div>
+            <div id="compareContent"></div>
+        </div>
+    </div>
+
     <script>
         // ── DATA ────────────────────────────────────────────────
+        // DATA:START
         const launchers = [
             { name: "Action Launcher", icon: "Action Launcher.png", price: "Freemium", ads: "none", updates: 2, custom: "Advanced", drawer: "🔄 Multi-Layout", klwp: "✅", widget: "✅", material: "✅", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/", download: "https://play.google.com/store/apps/details?id=com.actionlauncher.playstore" },
             { name: "AIO Launcher", icon: "AIO Launcher.png", price: "Freemium", ads: "none", updates: 4, custom: "Advanced", drawer: "↕️ Vertical", klwp: "❌", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "closed", fdroid: "❌", quickswitch: "❗", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/", download: "https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher" },
@@ -657,6 +904,7 @@
             { name: "Rootless Pixel Launcher", icon: "Rootless Pixel Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "➰", widget: "✅", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "✅", android: "5.0+", privacy: "https://reports.exodus-privacy.eu.org/en/reports/amirz.rootless.nexuslauncher/latest/", download: "" },
             { name: "Sentien Launcher", icon: "Sentien Launcher.png", price: "Free", ads: "none", updates: -1, custom: "Basic", drawer: "↕️ Vertical", klwp: "❌", widget: "❌", material: "❌", landscape: "✅", foldable: "✅", code: "open", fdroid: "✅", quickswitch: "❗", android: "4.0+", privacy: "", download: "" },
         ];
+// DATA:END
 
         // ── Legend data ─────────────────────────────────────────
         const legend = [
@@ -790,9 +1038,7 @@
                     case 'material': va = a.material; vb = b.material; break;
                                         case 'landscape': va = a.landscape; vb = b.landscape; break;
                     case 'foldable': va = a.foldable; vb = b.foldable; break;
-                    case 'foldable': va = a.foldable; vb = b.foldable; break;
                     case 'code': va = a.code; vb = b.code; break;
-                    case 'fdroid': va = a.fdroid; vb = b.fdroid; break;
                     case 'fdroid': va = a.fdroid; vb = b.fdroid; break;
                     
                     case 'quickswitch': va = a.quickswitch; vb = b.quickswitch; break;
@@ -814,7 +1060,7 @@
             statsText.textContent = 'Showing ' + sorted.length + ' of ' + launchers.length + ' launchers';
 
             if (sorted.length === 0) {
-                tbody.innerHTML = '<tr class="empty-row"><td colspan="15">No launchers match your filters. Try adjusting your search or filters.</td></tr>';
+                tbody.innerHTML = '<tr class="empty-row"><td colspan="' + (compareMode ? 18 : 17) + '">No launchers match your filters. Try adjusting your search or filters.</td></tr>';
                 return;
             }
 
@@ -833,7 +1079,15 @@
                     ? '<a class="link-btn" href="' + esc(l.download) + '" target="_blank" rel="noopener">Get ↗</a>'
                     : '<span style="color:var(--text2)">—</span>';
 
+                var checkboxCell = '';
+                if (compareMode) {
+                    var isChecked = compareSelected.indexOf(l.name) !== -1;
+                    var isDisabled = !isChecked && compareSelected.length >= 4;
+                    checkboxCell = '<td class="cmp-check-cell"><input type="checkbox" data-launcher="' + esc(l.name) + '"' + (isChecked ? ' checked' : '') + (isDisabled ? ' disabled' : '') + '></td>';
+                }
+
                 html += '<tr>'
+                    + checkboxCell
                     + '<td><div class="name-cell">' + iconTag + '<span>' + esc(l.name) + '</span></div></td>'
                     + '<td>' + priceBadge(l.price) + '</td>'
                     + '<td>' + adsLabel(l.ads) + '</td>'
@@ -853,7 +1107,38 @@
                     + '<td>' + downloadCell + '</td>'
                     + '</tr>';
             }
+            // Update thead for compare mode checkbox column
+            var theadRow = document.querySelector('thead tr');
+            var existingCheckTh = theadRow.querySelector('.cmp-check-cell');
+            if (compareMode && !existingCheckTh) {
+                var th = document.createElement('th');
+                th.className = 'cmp-check-cell';
+                th.textContent = '☑';
+                theadRow.insertBefore(th, theadRow.firstChild);
+            } else if (!compareMode && existingCheckTh) {
+                existingCheckTh.remove();
+            }
+
             tbody.innerHTML = html;
+
+            // Attach checkbox listeners in compare mode
+            if (compareMode) {
+                tbody.querySelectorAll('input[type="checkbox"][data-launcher]').forEach(function (cb) {
+                    cb.addEventListener('change', function () {
+                        var name = cb.getAttribute('data-launcher');
+                        if (cb.checked) {
+                            if (compareSelected.indexOf(name) === -1 && compareSelected.length < 4) {
+                                compareSelected.push(name);
+                            }
+                        } else {
+                            var idx = compareSelected.indexOf(name);
+                            if (idx !== -1) compareSelected.splice(idx, 1);
+                        }
+                        updateCompareFab();
+                        render();
+                    });
+                });
+            }
         }
 
         // ── Events ──────────────────────────────────────────────
@@ -897,6 +1182,155 @@
             legendHtml += '<div class="legend-item"><span class="sym">' + legend[i].sym + '</span>' + esc(legend[i].def) + '</div>';
         }
         legendGrid.innerHTML = legendHtml;
+
+        // ── Deep-link filters ────────────────────────────────────
+        function syncUrlToFilters() {
+            var params = new URLSearchParams(window.location.search);
+            if (params.has('search')) searchInput.value = params.get('search');
+            if (params.has('price')) filterPrice.value = params.get('price');
+            if (params.has('custom')) filterCustom.value = params.get('custom');
+            if (params.has('code')) filterCode.value = params.get('code');
+            if (params.has('ads')) filterAds.value = params.get('ads');
+        }
+
+        function syncFiltersToUrl() {
+            var params = new URLSearchParams();
+            if (searchInput.value.trim()) params.set('search', searchInput.value.trim());
+            if (filterPrice.value) params.set('price', filterPrice.value);
+            if (filterCustom.value) params.set('custom', filterCustom.value);
+            if (filterCode.value) params.set('code', filterCode.value);
+            if (filterAds.value) params.set('ads', filterAds.value);
+
+            var qs = params.toString();
+            var newUrl = window.location.pathname + (qs ? '?' + qs : '');
+            history.replaceState(null, '', newUrl);
+        }
+
+        // Wrap existing render to also sync URL
+        var _originalRender = render;
+        render = function () {
+            syncFiltersToUrl();
+            _originalRender();
+        };
+
+        // On load, apply URL params then render
+        syncUrlToFilters();
+
+        // ── Copy filter link ─────────────────────────────────────
+        var copyLinkBtn = document.getElementById('copyLinkBtn');
+        copyLinkBtn.addEventListener('click', function () {
+            var url = window.location.href;
+            navigator.clipboard.writeText(url).then(function () {
+                copyLinkBtn.textContent = '✅ Copied!';
+                copyLinkBtn.classList.add('copied');
+                setTimeout(function () {
+                    copyLinkBtn.textContent = '🔗 Copy Link';
+                    copyLinkBtn.classList.remove('copied');
+                }, 1800);
+            }).catch(function () {
+                // fallback
+                var ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                copyLinkBtn.textContent = '✅ Copied!';
+                copyLinkBtn.classList.add('copied');
+                setTimeout(function () {
+                    copyLinkBtn.textContent = '🔗 Copy Link';
+                    copyLinkBtn.classList.remove('copied');
+                }, 1800);
+            });
+        });
+
+        // ── Compare mode ─────────────────────────────────────────
+        var compareMode = false;
+        var compareSelected = [];
+        var compareToggleBtn = document.getElementById('compareToggle');
+        var compareFab = document.getElementById('compareFab');
+        var compareOverlay = document.getElementById('compareOverlay');
+        var compareModal = document.getElementById('compareModal');
+        var compareCloseBtn = document.getElementById('compareCloseBtn');
+        var compareContent = document.getElementById('compareContent');
+
+        function updateCompareFab() {
+            var n = compareSelected.length;
+            compareFab.textContent = 'Compare Selected (' + n + ')';
+            compareFab.classList.toggle('visible', compareMode && n >= 2);
+        }
+
+        compareToggleBtn.addEventListener('click', function () {
+            compareMode = !compareMode;
+            compareToggleBtn.classList.toggle('active', compareMode);
+            if (!compareMode) {
+                compareSelected = [];
+                updateCompareFab();
+            }
+            render();
+        });
+
+        compareFab.addEventListener('click', function () {
+            openCompareModal();
+        });
+
+        function openCompareModal() {
+            var selected = launchers.filter(function (l) {
+                return compareSelected.indexOf(l.name) !== -1;
+            });
+            if (selected.length < 2) return;
+
+            var props = [
+                { key: 'price', label: 'Price', format: function (v) { return priceBadge(v); } },
+                { key: 'ads', label: 'Ads/Bloat', format: function (v) { return adsLabel(v); } },
+                { key: 'updates', label: 'Updates', format: function (v) { return updatesLabel(v); } },
+                { key: 'custom', label: 'Customisability', format: function (v) { return esc(v); } },
+                { key: 'drawer', label: 'Drawer', format: function (v) { return drawerLabel(v); } },
+                { key: 'klwp', label: 'KLWP', format: function (v) { return supportSymbol(v); } },
+                { key: 'widget', label: 'Widget', format: function (v) { return supportSymbol(v); } },
+                { key: 'material', label: 'Material You', format: function (v) { return supportSymbol(v); } },
+                { key: 'landscape', label: 'Landscape', format: function (v) { return supportSymbol(v); } },
+                { key: 'foldable', label: 'Foldable/Tablet', format: function (v) { return supportSymbol(v); } },
+                { key: 'code', label: 'Source', format: function (v) { return codeLabel(v); } },
+                { key: 'fdroid', label: 'F-Droid', format: function (v) { return supportSymbol(v); } },
+                { key: 'quickswitch', label: 'QuickSwitch', format: function (v) { return supportSymbol(v); } },
+                { key: 'android', label: 'Android', format: function (v) { return esc(v); } },
+            ];
+
+            var html = '<table class="compare-table"><thead><tr><th class="prop-label">Property</th>';
+            for (var i = 0; i < selected.length; i++) {
+                var iconUrl = selected[i].icon ? iconSrc(selected[i].icon) : '';
+                var iconImg = iconUrl ? '<img class="cmp-icon" src="' + esc(iconUrl) + '" alt="">' : '';
+                html += '<th>' + iconImg + esc(selected[i].name) + '</th>';
+            }
+            html += '</tr></thead><tbody>';
+
+            for (var p = 0; p < props.length; p++) {
+                var prop = props[p];
+                // Check if values differ
+                var vals = selected.map(function (s) { return String(s[prop.key]); });
+                var allSame = vals.every(function (v) { return v === vals[0]; });
+
+                html += '<tr><td class="prop-label">' + prop.label + '</td>';
+                for (var j = 0; j < selected.length; j++) {
+                    html += '<td' + (allSame ? '' : ' class="diff"') + '>' + prop.format(selected[j][prop.key]) + '</td>';
+                }
+                html += '</tr>';
+            }
+
+            html += '</tbody></table>';
+            compareContent.innerHTML = html;
+            compareOverlay.classList.add('open');
+        }
+
+        function closeCompareModal() {
+            compareOverlay.classList.remove('open');
+        }
+
+        compareCloseBtn.addEventListener('click', closeCompareModal);
+        compareOverlay.addEventListener('click', function (e) {
+            if (e.target === compareOverlay) closeCompareModal();
+        });
 
         // ── Initial render ──────────────────────────────────────
         render();

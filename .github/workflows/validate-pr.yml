@@ -1,0 +1,119 @@
+# Validates launchers.json on PRs — checks JSON syntax, required fields, and enum values.
+name: Validate PR
+
+on:
+  pull_request:
+    paths:
+      - "launchers.json"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate launchers.json
+        id: validate
+        run: |
+          ERRORS=""
+          PASS=true
+
+          # ── 1. JSON syntax ──────────────────────────────────────────
+          if ! jq empty launchers.json 2>/dev/null; then
+            echo "::error::launchers.json is not valid JSON"
+            ERRORS="❌ **JSON syntax error** — file is not valid JSON.\n"
+            PASS=false
+            # Can't continue if JSON is broken
+            echo "pass=false" >> "$GITHUB_OUTPUT"
+            echo "errors=$ERRORS" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # ── 2. Required fields ──────────────────────────────────────
+          REQUIRED_FIELDS=(
+            name icon archived price ads updateFrequency customisability
+            appDrawerStyle klwp widget materialYou landscape foldable
+            code fdroid quickswitch androidVersion privacyUrl downloadUrl
+          )
+
+          TOTAL=$(jq 'length' launchers.json)
+          for i in $(seq 0 $(( TOTAL - 1 ))); do
+            LAUNCHER_NAME=$(jq -r ".[$i].name // \"(entry $i)\"" launchers.json)
+            for field in "${REQUIRED_FIELDS[@]}"; do
+              HAS=$(jq --argjson idx "$i" --arg f "$field" 'has($f)' <<< "$(jq ".[$i]" launchers.json)")
+              if [ "$HAS" != "true" ]; then
+                ERRORS+="❌ **$LAUNCHER_NAME**: missing required field \`$field\`\n"
+                PASS=false
+              fi
+            done
+          done
+
+          # ── 3. Enum validation ──────────────────────────────────────
+          validate_enum() {
+            local field="$1"
+            shift
+            local allowed=("$@")
+            local allowed_joined
+            allowed_joined=$(printf '"%s",' "${allowed[@]}")
+            allowed_joined="[${allowed_joined%,}]"
+
+            OFFENDERS=$(jq -r --arg f "$field" --argjson allowed "$allowed_joined" \
+              '.[] | select(.[$f] != null) | select([.[$f]] | inside($allowed) | not) | "\(.name): \(.[$f])"' \
+              launchers.json 2>/dev/null)
+
+            if [ -n "$OFFENDERS" ]; then
+              while IFS= read -r line; do
+                ERRORS+="❌ **${line%%:*}**: invalid \`$field\` value \`${line#*: }\` (allowed: ${allowed[*]})\n"
+                PASS=false
+              done <<< "$OFFENDERS"
+            fi
+          }
+
+          validate_enum "price"           free freemium paid trialware
+          validate_enum "ads"             none mild excessive unknown
+          validate_enum "customisability" god_mode advanced intermediate basic less_than_basic
+          validate_enum "appDrawerStyle"  vertical horizontal multi_layout other
+          validate_enum "code"            open closed partial unknown
+
+          BOOL_FIELDS=(klwp widget materialYou landscape foldable fdroid quickswitch)
+          for bf in "${BOOL_FIELDS[@]}"; do
+            validate_enum "$bf" yes no partial unknown not_tested
+          done
+
+          # ── 4. Persist results ──────────────────────────────────────
+          echo "pass=$PASS" >> "$GITHUB_OUTPUT"
+
+          # Write errors to a file since they may contain newlines
+          ERRORS_FILE=$(mktemp)
+          printf '%b' "$ERRORS" > "$ERRORS_FILE"
+          echo "errors_file=$ERRORS_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Post validation results as PR comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ steps.validate.outputs.pass }}" == "true" ]; then
+            BODY="## ✅ Validation Passed
+
+          All entries in \`launchers.json\` have valid syntax, required fields, and correct enum values."
+          else
+            BODY="## ❌ Validation Failed
+
+          The following issues were found in \`launchers.json\`:
+
+          $(cat "${{ steps.validate.outputs.errors_file }}")
+
+          ---
+          *Please fix these issues and push again.*"
+          fi
+
+          gh pr comment "${{ github.event.pull_request.number }}" --body "$BODY"
+
+      - name: Fail if validation errors
+        if: steps.validate.outputs.pass == 'false'
+        run: exit 1

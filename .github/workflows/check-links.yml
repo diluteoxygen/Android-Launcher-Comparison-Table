@@ -1,0 +1,71 @@
+# Checks all launcher URLs for broken links and opens an issue if any are found.
+# Runs weekly on Sunday at midnight UTC + manual dispatch.
+name: Check Broken Links
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Every Sunday at 00:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check URLs from launchers.json
+        id: check
+        run: |
+          REPORT_FILE=$(mktemp)
+          BROKEN=0
+
+          # Extract launcher names + URLs as tab-separated triples:
+          #   name \t field \t url
+          jq -r '.[] | select(.privacyUrl  != null and .privacyUrl  != "") | [.name, "privacyUrl",  .privacyUrl]  | @tsv' launchers.json >> /tmp/urls.tsv
+          jq -r '.[] | select(.downloadUrl != null and .downloadUrl != "") | [.name, "downloadUrl", .downloadUrl] | @tsv' launchers.json >> /tmp/urls.tsv
+
+          while IFS=$'\t' read -r launcher_name field url; do
+            # Skip blank lines
+            [ -z "$url" ] && continue
+
+            echo "Checking [$field] $url ($launcher_name)..."
+            HTTP_CODE=$(curl --head --location --max-time 15 --retry 2 \
+              --write-out '%{http_code}' --silent --output /dev/null "$url" || echo "000")
+
+            if [[ "$HTTP_CODE" =~ ^(0|4[0-9]{2}|5[0-9]{2})$ ]]; then
+              echo "  ❌ HTTP $HTTP_CODE"
+              echo "| $launcher_name | \`$field\` | $url | $HTTP_CODE |" >> "$REPORT_FILE"
+              BROKEN=1
+            else
+              echo "  ✅ HTTP $HTTP_CODE"
+            fi
+          done < /tmp/urls.tsv
+
+          echo "broken=$BROKEN" >> "$GITHUB_OUTPUT"
+          echo "report_file=$REPORT_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Open issue for broken links
+        if: steps.check.outputs.broken == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          TITLE="🔗 Broken links detected — $DATE"
+
+          BODY="## Broken Links Report — $DATE
+
+          The weekly link checker found the following broken URLs in \`launchers.json\`:
+
+          | Launcher | Field | URL | HTTP Status |
+          |----------|-------|-----|-------------|
+          $(cat "${{ steps.check.outputs.report_file }}")
+
+          > This issue was created automatically by the **Check Broken Links** workflow.
+          > Please verify the URLs and update \`launchers.json\` accordingly."
+
+          gh issue create --title "$TITLE" --body "$BODY" --label "broken-link"

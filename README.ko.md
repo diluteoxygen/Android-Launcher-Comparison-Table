@@ -1,3 +1,5 @@
+🌐 **Language / भाषा / 언어 / Idioma:** [English](README.md) | [हिन्दी](README.hi.md) | [한국어](README.ko.md) | [Español](README.es.md)
+
 # [안드로이드 런처 비교표 (The Definitive Android Launcher Comparison Table)](https://diluteoxygen.github.io/Android-Launcher-Comparison-Table/)
 
 ![Last Updated: June 2026](https://img.shields.io/badge/Last%20Updated-June%202026-brightgreen)
@@ -49,12 +51,13 @@
 
 | **이름** | **가격** | **광고/블로트** | **업데이트 빈도** | **커스터마이징** | **앱 서랍 스타일** | **KLWP 지원** | **위젯 지원** | **Material You** | **가로모드 지원** | **폴더블/태블릿** | **코드 공개** | **F-Droid** | **QuickSwitch** | **안드로이드 버전** | **개인정보** | **다운로드** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+<!-- ACTIVE_TABLE:START -->
 | Action Launcher | Freemium | 🧹 | ⭐⭐ | 고급 | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.actionlauncher.playstore/latest/) | [Link](https://play.google.com/store/apps/details?id=com.actionlauncher.playstore) |
 | AIO Launcher | Freemium | 🧹 | ⭐⭐⭐⭐ | 고급 | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/ru.execbit.aiolauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=ru.execbit.aiolauncher) |
 | Ap15 Launcher | Freemium | 🧹 | ⭐⭐ | 기본 이하 | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.aurhe.ap15/latest) | [Link](https://play.google.com/store/apps/details?id=com.aurhe.ap15) |
 | Apex Launcher | 체험판 | 📢 | ⭐ | 고급 | 🔀 | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 4.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.anddoes.launcher/latest/) | — |
 | Apus Launcher | Freemium | 🚨 | ⭐⭐ | 중급 | 🔀 | 🌓 | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.apusapps.launcher/latest/) | — |
-| Before Launcher | Freemium | 🧹 | ⭐⭐⭐ | 중급 | ⬆️⬇️ | ❔ | ✅ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | ❔ | [Link](https://play.google.com/store/apps/details?id=com.beforesoft.launcher) |
+| Before Launcher | Freemium | 🧹 | ⭐⭐⭐ | 중급 | ⬆️⬇️ | ❔ | ✅ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | [Link](https://play.google.com/store/apps/details?id=com.beforesoft.launcher) |
 | Bliss Launcher | 무료 | 🧹 | ⭐⭐ | 중급 | ⬆️⬇️ | ✅ | ✅ | ✅ | ❔ | ✅ | 📖 | ✅ | 🧪 | 9.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/foundation.e.blisslauncher/latest/) | — |
 | Bridge Launcher | 무료 | 🧹 | ⭐⭐ | 고급 | 기타 | ✅ | ✖️ | ✖️ | ❔ | ✅ | 📖 | ✖️ | ✖️ | 8.0+ | N/A | [Link](https://github.com/bridgelauncher) |
 | Discreet Launcher | 무료 | 🧹 | ⭐⭐⭐ | 기본 | 🔀 | ✖️ | ✖️ | ✖️ | ✖️ | ❔ | 📖 | ✅ | 🧪 | 5.0+ | N/A | [Link](https://github.com/falzonv/discreet-launcher/releases) |
@@ -73,7 +76,7 @@
 | Lynx Launcher | Freemium | 🧹 | ⭐⭐ | 고급 | 🔀 | ✅ | ✅ | ✅ | ❔ | ✖️ | 🔒 | ✖️ | 🧪 | 12.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.n277.lynxlauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.n277.lynxlauncher) |
 | Microsoft Launcher | 무료 | 📢 | ⭐⭐⭐⭐ | 고급 | 🔀 | ✅ | ✅ | ✅ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 7.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.microsoft.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.microsoft.launcher) |
 | Minimal Launcher | 무료 | 🧹 | ⭐⭐ | 기본 이하 | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | 📖 | ✅ | 🧪 | 4.0+ | N/A | — |
-| minimalist phone® | Freemium | 🧹 | ⭐⭐⭐ | 기본 | ⬆️⬇️ | ✖️ | ✖️ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | ❔ | [Link](https://play.google.com/store/apps/details?id=com.qqlabs.minimalistlauncher) |
+| minimalist phone® | Freemium | 🧹 | ⭐⭐⭐ | 기본 | ⬆️⬇️ | ✖️ | ✖️ | ❔ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | [Link](https://play.google.com/store/apps/details?id=com.qqlabs.minimalistlauncher) |
 | Mint Launcher | 무료 | 📢 | ⭐⭐ | 중급 | ⬆️⬇️ | 🌓 | ✅ | ✖️ | ✖️ | ✖️ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.mi.android.go.globallauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.mi.android.go.globallauncher) |
 | Neo Launcher | 무료 | 🧹 | ⭐ | 고급 | ⬆️⬇️ | ✅ | ✅ | ✅ | ✅ | ✅ | 📖 | ✅ | ✖️ | 8.0+ | N/A | [Link](https://github.com/NeoApplications/Neo-Launcher/releases) |
 | Neo Launcher (Sci-Fi) | Freemium | 🚨 | ⭐⭐⭐⭐ | 중급 | 기타 | ✖️ | ✅ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | [Link](https://play.google.com/store/apps/details?id=appmania.launcher.scifi) |
@@ -96,6 +99,7 @@
 | XOS Launcher | Freemium | 📢 | ⭐⭐⭐ | 중급 | ⬆️⬇️ | 🌓 | ✅ | ✖️ | 🌓 | 🌓 | 🔒 | ✖️ | 🧪 | 7.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.transsion.XOSLauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.transsion.XOSLauncher) |
 | Yasan Launcher | 무료 | 🧹 | ⭐⭐ | 중급 | ⬆️⬇️ | ✖️ | ✅ | ✖️ | ✅ | ❔ | 🔒 | ✖️ | 🧪 | 10.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/yasan.space.mnml.ai.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=yasan.space.mnml.ai.launcher) |
 | µLauncher | 무료 | 🧹 | ⭐⭐⭐⭐ | 기본 이하 | 기타 | ✖️ | ✅ | ✅ | ✅ | ❔ | 📖 | ✅ | 🧪 | 5.0+ | N/A | [Link](https://github.com/jrpie/launcher/releases) |
+<!-- ACTIVE_TABLE:END -->
 
 ## 보관된 런처 (Archived Launchers)
 
@@ -106,6 +110,7 @@
 
 | **이름** | **가격** | **광고/블로트** | **업데이트 빈도** | **커스터마이징** | **앱 서랍 스타일** | **KLWP 지원** | **위젯 지원** | **Material You** | **가로모드 지원** | **폴더블/태블릿** | **코드 공개** | **F-Droid** | **QuickSwitch** | **안드로이드 버전** | **개인정보** | **다운로드** |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+<!-- ARCHIVED_TABLE:START -->
 | ADW Launcher 2 | Freemium | ❔ | ☠️ | 중급 | ⬆️⬇️ | ✅ | ✅ | ✖️ | ✅ | ✅ | 🔒 | ✖️ | 🧪 | 2.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/org.adw.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=org.adw.launcher) |
 | Alphabet Launcher | 무료 | ❔ | ☠️ | 기본 이하 | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | ❔ | N/A | — |
 | ASAP Launcher | Freemium | ❔ | ☠️ | 중급 | ⬆️⬇️ | 🌓 | ✖️ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/reports/com.citc.asap/latest) | — |
@@ -124,6 +129,7 @@
 | Pear Launcher | Freemium | 🧹 | ☠️ | 중급 | ⬆️⬇️ | 🌓 | ✅ | ✖️ | ❔ | ❔ | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.pearlauncher.pearlauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.pearlauncher.pearlauncher) |
 | Rootless Pixel Launcher | 무료 | 🧹 | ☠️ | 기본 | ⬆️⬇️ | 🌓 | ✅ | ✖️ | ✅ | ✅ | 📖 | ✅ | ✅ | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/amirz.rootless.nexuslauncher/latest/) | — |
 | Sentien Launcher | 무료 | 🧹 | ☠️ | 기본 | ⬆️⬇️ | ✖️ | ✖️ | ✖️ | ✅ | ✅ | 📖 | ✅ | 🧪 | 4.0+ | N/A | — |
+<!-- ARCHIVED_TABLE:END -->
 
 </details>
 

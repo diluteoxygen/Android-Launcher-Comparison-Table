@@ -1,0 +1,105 @@
+# Checks Exodus Privacy tracker counts for Play Store launchers and opens a PR
+# if any counts have changed since the last recorded baseline.
+# Runs weekly on Monday at 06:00 UTC + manual dispatch.
+name: Exodus Privacy Tracker Check
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"  # Every Monday at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  exodus-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Query Exodus Privacy API and compare baseline
+        id: exodus
+        run: |
+          BASELINE=".github/exodus-baseline.json"
+          UPDATED=$(mktemp)
+          CHANGED=0
+          DIFF_REPORT=$(mktemp)
+
+          # Start with existing baseline
+          cp "$BASELINE" "$UPDATED"
+
+          # Extract package IDs from Play Store download URLs
+          jq -r '.[] |
+            select(.downloadUrl != null and (.downloadUrl | contains("play.google.com"))) |
+            [.name, (.downloadUrl | capture("id=(?<id>[^&]+)") | .id)] |
+            @tsv
+          ' launchers.json | while IFS=$'\t' read -r launcher_name package_id; do
+            [ -z "$package_id" ] && continue
+
+            echo "Querying Exodus for $launcher_name ($package_id)..."
+            RESPONSE=$(curl --silent --max-time 20 --retry 2 \
+              "https://reports.exodus-privacy.eu.org/api/search/${package_id}/latest" 2>/dev/null) || {
+              echo "  ⚠️  API request failed for $package_id — skipping"
+              continue
+            }
+
+            # Validate we got a JSON response with tracker info
+            TRACKER_COUNT=$(echo "$RESPONSE" | jq '.trackers | length' 2>/dev/null) || {
+              echo "  ⚠️  Invalid JSON response for $package_id — skipping"
+              continue
+            }
+
+            PREVIOUS_COUNT=$(jq -r --arg pkg "$package_id" '.[$pkg] // "unknown"' "$BASELINE")
+
+            echo "  Trackers: $TRACKER_COUNT (previous: $PREVIOUS_COUNT)"
+
+            # Update the working baseline
+            jq --arg pkg "$package_id" --argjson count "$TRACKER_COUNT" \
+              '.[$pkg] = $count' "$UPDATED" > "${UPDATED}.tmp" && mv "${UPDATED}.tmp" "$UPDATED"
+
+            if [ "$TRACKER_COUNT" != "$PREVIOUS_COUNT" ]; then
+              echo "| $launcher_name | \`$package_id\` | $PREVIOUS_COUNT | $TRACKER_COUNT |" >> "$DIFF_REPORT"
+              CHANGED=1
+            fi
+          done
+
+          # Persist outputs for subsequent steps
+          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "updated_file=$UPDATED" >> "$GITHUB_OUTPUT"
+          echo "diff_report=$DIFF_REPORT" >> "$GITHUB_OUTPUT"
+
+      - name: Create branch, commit, and open PR
+        if: steps.exodus.outputs.changed == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          BRANCH="exodus-update-${DATE}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          cp "${{ steps.exodus.outputs.updated_file }}" .github/exodus-baseline.json
+          git add .github/exodus-baseline.json
+          git commit -m "chore: update Exodus tracker baseline — $DATE"
+          git push origin "$BRANCH"
+
+          BODY="## Exodus Privacy Tracker Changes — $DATE
+
+          The following launchers have different tracker counts compared to the baseline:
+
+          | Launcher | Package | Previous | Current |
+          |----------|---------|----------|---------|
+          $(cat "${{ steps.exodus.outputs.diff_report }}")
+
+          > This PR was created automatically by the **Exodus Privacy Tracker Check** workflow.
+          > Review the changes and merge if acceptable."
+
+          gh pr create \
+            --title "📊 Exodus tracker baseline update — $DATE" \
+            --body "$BODY" \
+            --base main \
+            --head "$BRANCH"
