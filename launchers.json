@@ -220,6 +220,29 @@
     "downloadUrl": "https://play.google.com/store/apps/details?id=com.atlantis.launcher"
   },
   {
+    "name": "DUOWEB Simple Launcher",
+    "icon": "DUOWEB Simple Launcher.png",
+    "archived": false,
+    "price": "free",
+    "ads": "none",
+    "updateFrequency": 3,
+    "updateStatus": null,
+    "customisability": "less_than_basic",
+    "appDrawerStyle": "vertical",
+    "klwp": "no",
+    "widget": "partial",
+    "materialYou": "no",
+    "landscape": "not_tested",
+    "foldable": "partial",
+    "code": "closed",
+    "fdroid": "no",
+    "quickswitch": "no",
+    "androidVersion": "6.0+",
+    "privacyUrl": "https://reports.exodus-privacy.eu.org/en/reports/764817/",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=cz.duoweb.launcher"
+  },
+
+  {
     "name": "Fossify Launcher",
     "icon": "Fossify Launcher.png",
     "archived": false,

@@ -62,6 +62,7 @@
 | Bridge Launcher | 무료 | 🧹 | ⭐⭐ | 고급 | 기타 | ✅ | ✖️ | ✖️ | ❔ | ✅ | 📖 | ✖️ | ✖️ | 8.0+ | N/A | [Link](https://github.com/bridgelauncher) |
 | Discreet Launcher | 무료 | 🧹 | ⭐⭐⭐ | 기본 | 🔀 | ✖️ | ✖️ | ✖️ | ✖️ | ❔ | 📖 | ✅ | 🧪 | 5.0+ | N/A | [Link](https://github.com/falzonv/discreet-launcher/releases) |
 | DNA Launcher | Freemium | 🧹 | ⭐⭐⭐ | 중급 | ⬅️➡️ | ❔ | ✅ | ✖️ | ❔ | 🌓 | 🔒 | ✖️ | 🧪 | 7.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.atlantis.launcher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.atlantis.launcher) |
+| DUOWEB Simple Launcher | 무료 | 🧹 | ⭐⭐⭐ | 기본 이하 | ⬆️⬇️ | ✖️ | 🌓 | ✖️ | 🧪 | 🌓 | 🔒 | ✖️ | ✖️ | 6.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/764817/) | [Link](https://play.google.com/store/apps/details?id=cz.duoweb.launcher) |
 | Fossify Launcher | 무료 | 🧹 | ⭐⭐⭐ | 기본 | 🔀 | ✖️ | ✅ | ✅ | ✖️ | ❔ | 📖 | ✅ | 🧪 | 6.0+ | N/A | [Link](https://github.com/FossifyOrg/Launcher/releases) |
 | Go Launcher | Freemium | 🚨 | ⭐⭐⭐ | 고급 | 🔀 | 🌓 | ✅ | ✖️ | 🌓 | 🌓 | 🔒 | ✖️ | 🧪 | 5.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.gau.go.launcherex/latest/) | [Link](https://play.google.com/store/apps/details?id=com.gau.go.launcherex) |
 | HiOS Launcher 8 | 무료 | 🚨 | ⭐⭐⭐ | 고급 | ⬆️⬇️ | 🌓 | ✅ | ✖️ | 🌓 | 🌓 | 🔒 | ✖️ | 🧪 | 7.0+ | [via Exodus Privacy](https://reports.exodus-privacy.eu.org/en/reports/com.transsion.hilauncher/latest/) | [Link](https://play.google.com/store/apps/details?id=com.transsion.hilauncher) |
